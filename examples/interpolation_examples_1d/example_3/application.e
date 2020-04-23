@@ -57,11 +57,11 @@ feature {NONE} -- Initialization
 					{EXCEPTIONS}.die (1)
 				end
 				if gsl_spline.gsl_spline_init (spline_akima, x, y, n) /= 0 then
-					print ("Error in gsl_spline_init with spline_cubic %N")
+					print ("Error in gsl_spline_init with spline_akima %N")
 					{EXCEPTIONS}.die (1)
 				end
 				if gsl_spline.gsl_spline_init (spline_steffen, x, y, n) /= 0 then
-					print ("Error in gsl_spline_init with spline_cubic %N")
+					print ("Error in gsl_spline_init with spline_steffen %N")
 					{EXCEPTIONS}.die (1)
 				end
 
