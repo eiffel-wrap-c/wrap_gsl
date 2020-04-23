@@ -68,4 +68,9 @@ Work in progress
 
 ## Examples
 
-Work in progress
+### 1D Interpolation Examples 
+
+* [Example 1](./examples/interpolation_examples_1d/example_1) 		`demonstrates the use of the interpolation and spline functions`
+* [Example 2](./examples/interpolation_examples_1d/example_2) 		`demonstrates a periodic cubic spline with 4 data points`
+* [Example 3](./examples/interpolation_examples_1d/example_3) 		`demonstrates the difference between the cubic spline, Akima, and Steffen interpolation types on a difficult dataset`
+
