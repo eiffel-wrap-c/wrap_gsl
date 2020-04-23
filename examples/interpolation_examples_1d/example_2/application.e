@@ -1,12 +1,11 @@
 note
 	description: "[
 				Eiffel version of C 
-				The following program demonstrates the use of the interpolation and spline functions.
-				It computes a cubic spline interpolation of the 10-point dataset (x_i, y_i) where x_i = i + \sin(i)/2 and y_i = i + \cos(i^2) for i = 0 \dots 9.
 				
+				The next program demonstrates a periodic cubic spline with 4 data points. Note that the first and last points must be supplied with the same y-value for a periodic spline.
 				The output is designed to be used with the GNU plotutils graph program:
 
-				$ ./example_1 > interp.dat
+				$ ./example_2 > interp.dat
 				$ graph -T ps < interp.dat > interp.ps
 
 				Or just upload the data to GNUPLot online http://gnuplot.respawned.com/#
@@ -35,48 +34,48 @@ feature {NONE} -- Initialization
 			gsl_inter: GSL_INTERPOLATION
 			gsl_spline: GSL_SPLINE_FUNCTIONS_API
 			res: INTEGER
+			n: INTEGER
 		do
+			n := 4
+
 			create gsl_inter
 			create gsl_spline
 
-			create y.make_filled (0.0, 1, 10)
-			create x.make_filled (0.0, 1, 10)
-  			print ("#M0,s=17%N")
-  			from
-  				i := 0
-  			until
-				i = 10
-  			loop
-				x[i+1] := i + {DOUBLE_MATH}.sine (i)
-				y[i+1] := i + {DOUBLE_MATH}.cosine (i*i)
-				print (x[i+1].out + " " + y [i + 1].out+ "%N")
-				i := i + 1
-  			end
-
-			print ("#m=1,S=0%N")
-
+			x:= {ARRAY [REAL_64]}<<0.00, 0.10,  0.27,  0.30>>
+			Y:= {ARRAY [REAL_64]}<<0.15, 0.70, -0.10,  0.15>>
+				-- y[1] = y[4] for periodic data
 
 			if
 				attached {GSL_INTERP_ACCEL_STRUCT_API} gsl_inter.gsl_interp_accel_alloc as acc and then
-				attached {GSL_SPLINE_STRUCT_API} gsl_spline.gsl_spline_alloc (gsl_inter.gsl_interp_cspline, 10) as spline
+				attached {GSL_INTERP_TYPE_STRUCT_API} gsl_inter.gsl_interp_cspline_periodic as t and then
+				attached {GSL_SPLINE_STRUCT_API} gsl_spline.gsl_spline_alloc (t, 4) as spline
 			then
-				if  gsl_spline.gsl_spline_init (spline, x, y, 10) /= 0 then
+				print ("#m=0,S=5%N")
+				from
+					i := 1
+				until
+					i > N
+				loop
+					print (x[i].out + " " + y[i].out + "%N")
+					i := i + 1
+				end
+				print ("#m=1,S=0%N")
+				if gsl_spline.gsl_spline_init (spline, x, y, n) /= 0 then
 					print ("Error in gsl_spline_init%N")
 					{EXCEPTIONS}.die (1)
 				end
 				from
-					i :=1
-					xi := x[1]
+					i := 1
 				until
-					xi >= x [10]
+					i > 100
 				loop
+					xi := (1 - (i-1) / 100.0) * x[1] + ((i-1) / 100.0) * x[n]
 					yi := gsl_spline.gsl_spline_eval (spline, xi, acc)
-					print (xi.out + " " + yi.out+ "%N")
-					xi := xi + 0.01
+					print (xi.out + " " + yi.out + "%N")
+					i := i + 1
 				end
 				gsl_spline.gsl_spline_free (spline)
 				gsl_inter.gsl_interp_accel_free (acc)
 			end
-
 		end
 end
