@@ -15,8 +15,39 @@ The GNU Scientific Library (GSL) is a collection of routines for numerical compu
 
 ### Linux
 
-Download the source package: 
+Download: the file 
 
+ ftp://ftp.gnu.org/gnu/gsl/gsl-2.6.tar.gz
+
+
+Place the file in your home directory and unpack the file with the following command:
+
+	tar -zxvf gsl-2.6.tar.gz	
+
+This will create a directory called gsl-2.6 in your home directory. Change to this directory.
+
+	cd gsl-2.6
+
+Now configure the installation
+
+	./configure --prefix=/home/yourname/gsl
+
+If there are no errors, compile the library. This step will take several minutes.
+
+	make
+
+Check and test the library before actually installing it.
+
+	make check
+
+If there are no errors, go ahead and install the library with:
+
+	make install
+
+
+Rebuild the ldconfig cache using
+	
+	sudo ldconfig
 
 	
 ### Windows
@@ -26,7 +57,8 @@ Using vcpkg (https://github.com/microsoft/vcpkg) tool, you can install libyaml l
 	vcpkg install gsl:x64-windows
 	
 Then copy the files `gsl.dll` and `gsl.lib` to `%LIBRARY_PATH%wrap_library/library/C/include/lib`
-Where `%LIBRARY_PATH%` is where you clone/download `wrap_yaml` source code.
+Where `%LIBRARY_PATH%` is where you clone/download `wrap_gsl` source code.
+On windows if you are using a DLL be sure the DLL is in your PATH when you execute the examples.
 
 
 ## Status

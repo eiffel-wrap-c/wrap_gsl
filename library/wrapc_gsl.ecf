@@ -10,7 +10,7 @@
 		<setting name="msil_classes_per_module" value="5"/>
 		<setting name="dead_code_removal" value="feature"/>
 
-	    <!-- Include headers needed for C glue code to implement callbacks -->
+	    	<!-- Include headers needed for C glue code to implement callbacks -->
 		<external_include location="$ECF_CONFIG_PATH\generated_wrapper\c\include">
 			<condition>
 				<platform value="windows"/>
@@ -24,26 +24,22 @@
 
 		<!-- Include headers for the C target library -->
 		
-		<external_include location="$ECF_CONFIG_PATH\C\include">
+
+		<external_include location="$ECF_CONFIG_PATH/C/include">
 			<condition>
 				<platform value="windows"/>
 			</condition>		
 		</external_include>
 		
-		
-			
-		<!-- Update the headers PATH for other platforms, like Linux
-		<external_include location="C:\home\tools\vcpkg\installed\x64-windows\include">
+		<!--Update the headers PATH for other platforms, like Linux-->
+		<external_include location="/usr/local/include">
 			<condition>
 				<platform excluded_value="windows"/>
 			</condition>
 		</external_include>
-		-->
 		
 		
-	
-		
-		<!-- Manual Wrapper add this only if it's needed 
+		<!-- Manual Wrapper add this only if it's needed -->
 		
 		<external_include location="$ECF_CONFIG_PATH\manual_wrapper\c\include">
 			<condition>
@@ -56,8 +52,7 @@
 				<platform excluded_value="windows"/>
 			</condition>		
 		</external_include>
-		-->
-
+	
 		<!-- C glue code library to implement Callbacks -->
 		<external_object location="$ECF_CONFIG_PATH/C/spec/$ISE_C_COMPILER/$ISE_PLATFORM/lib/eif_gsl.lib">
 			<condition>
@@ -71,12 +66,19 @@
 		</external_object>
 
 
-		<!-- External C library -->
-		<external_object location="/usr/local/lib/gsl.so">
+			<!-- External C library -
+		<external_object location="`pkg-config --libs gsl`">
 			<condition>
 				<platform excluded_value="windows"/>
 			</condition>
-		</external_object>
+		</external_object> -->
+
+		<external_linker_flag value="`pkg-config --libs gsl`">
+			<condition>
+				<platform excluded_value="windows"/>
+			</condition>
+		</external_linker_flag>
+
 		
 		<external_object location="$ECF_CONFIG_PATH/C/lib/gsl.lib">
 			<condition>
