@@ -74,3 +74,7 @@ Work in progress
 * [Example 2](./examples/interpolation_examples_1d/example_2) 		`demonstrates a periodic cubic spline with 4 data points`
 * [Example 3](./examples/interpolation_examples_1d/example_3) 		`demonstrates the difference between the cubic spline, Akima, and Steffen interpolation types on a difficult dataset`
 
+
+### Basis Splines Examples 
+
+* [Example 1](./examples/basis_splines_examples/example_1) 		`computes a linear least squares fit to data using cubic B-spline basis functions with uniform breakpoints.`

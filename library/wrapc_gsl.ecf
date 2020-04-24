@@ -85,6 +85,11 @@
 				<platform value="windows"/>
 			</condition>
 		</external_object>
+		<external_object location="$ECF_CONFIG_PATH/C/lib/gslcblas.lib">
+			<condition>
+				<platform value="windows"/>
+			</condition>
+		</external_object>
 
 		<!-- Dependency libraries -->	
 		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>

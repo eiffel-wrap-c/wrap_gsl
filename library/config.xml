@@ -28,6 +28,24 @@
       </match>
       <wrapper type="default">
       </wrapper>
+  </rule>
+
+  <rule>
+      <match>
+        <identifier name="gsl_vector.*"/>
+        <type name="function"/>
+      </match>
+      <wrapper type="default">
+      </wrapper>
+  </rule>
+
+  <rule>
+      <match>
+        <identifier name="gsl_matrix.*"/>
+        <type name="function"/>
+      </match>
+      <wrapper type="default">
+      </wrapper>
   </rule>  
 
   <rule>
@@ -39,7 +57,38 @@
       </wrapper>
   </rule>  
 
- 
+  <rule>
+      <match>
+        <identifier name="gsl_multifit_.*"/>
+      </match>
+      <wrapper type="default">
+      </wrapper>
+  </rule>  
+
+  <rule>
+      <match>
+        <identifier name="gsl_rng_.*"/>
+      </match>
+      <wrapper type="default">
+      </wrapper>
+  </rule>  
+
+   <rule>
+      <match>
+        <identifier name="gsl_stats_.*"/>
+      </match>
+      <wrapper type="default">
+      </wrapper>
+  </rule>   
+  
+  <rule>
+      <match>
+        <identifier name="gsl_ran_.*"/>
+      </match>
+      <wrapper type="default">
+      </wrapper>
+  </rule>  
+
  <!-- And the rest shall be ignored -->
   <rule>
       <match>
