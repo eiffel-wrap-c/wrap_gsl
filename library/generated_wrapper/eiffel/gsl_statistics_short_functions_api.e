@@ -154,14 +154,64 @@ feature -- Access
 			c_gsl_stats_short_minmax_index (min_index, max_index, data.area.base_address, stride, n)
 		end
 
+	gsl_stats_short_select (data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER; k: INTEGER): INTEGER 
+		do
+			Result := c_gsl_stats_short_select (data.area.base_address, stride, n, k)
+		end
+
 	gsl_stats_short_median_from_sorted_data (sorted_data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_short_median_from_sorted_data (sorted_data.area.base_address, stride, n)
 		end
 
+	gsl_stats_short_median (sorted_data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER): REAL_64 
+		do
+			Result := c_gsl_stats_short_median (sorted_data.area.base_address, stride, n)
+		end
+
 	gsl_stats_short_quantile_from_sorted_data (sorted_data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER; f: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_short_quantile_from_sorted_data (sorted_data.area.base_address, stride, n, f)
+		end
+
+	gsl_stats_short_trmean_from_sorted_data (trim: REAL_64; sorted_data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER): REAL_64 
+		do
+			Result := c_gsl_stats_short_trmean_from_sorted_data (trim, sorted_data.area.base_address, stride, n)
+		end
+
+	gsl_stats_short_gastwirth_from_sorted_data (sorted_data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER): REAL_64 
+		do
+			Result := c_gsl_stats_short_gastwirth_from_sorted_data (sorted_data.area.base_address, stride, n)
+		end
+
+	gsl_stats_short_mad0 (data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER; work: ARRAY [REAL_64]): REAL_64 
+		do
+			Result := c_gsl_stats_short_mad0 (data.area.base_address, stride, n, work.area.base_address)
+		end
+
+	gsl_stats_short_mad (data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER; work: ARRAY [REAL_64]): REAL_64 
+		do
+			Result := c_gsl_stats_short_mad (data.area.base_address, stride, n, work.area.base_address)
+		end
+
+	gsl_stats_short_sn0_from_sorted_data (sorted_data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER; work: ARRAY [INTEGER]): INTEGER 
+		do
+			Result := c_gsl_stats_short_sn0_from_sorted_data (sorted_data.area.base_address, stride, n, work.area.base_address)
+		end
+
+	gsl_stats_short_sn_from_sorted_data (sorted_data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER; work: ARRAY [INTEGER]): REAL_64 
+		do
+			Result := c_gsl_stats_short_sn_from_sorted_data (sorted_data.area.base_address, stride, n, work.area.base_address)
+		end
+
+	gsl_stats_short_qn0_from_sorted_data (sorted_data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER; work: ARRAY [INTEGER]; work_int: ARRAY [INTEGER]): INTEGER 
+		do
+			Result := c_gsl_stats_short_qn0_from_sorted_data (sorted_data.area.base_address, stride, n, work.area.base_address, work_int.area.base_address)
+		end
+
+	gsl_stats_short_qn_from_sorted_data (sorted_data: ARRAY [INTEGER]; stride: INTEGER; n: INTEGER; work: ARRAY [INTEGER]; work_int: ARRAY [INTEGER]): REAL_64 
+		do
+			Result := c_gsl_stats_short_qn_from_sorted_data (sorted_data.area.base_address, stride, n, work.area.base_address, work_int.area.base_address)
 		end
 
 feature -- Externals
@@ -427,6 +477,15 @@ feature -- Externals
 			]"
 		end
 
+	c_gsl_stats_short_select (data: POINTER; stride: INTEGER; n: INTEGER; k: INTEGER): INTEGER
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_stats_short_select ($data, (size_t const)$stride, (size_t const)$n, (size_t const)$k);
+			]"
+		end
+
 	c_gsl_stats_short_median_from_sorted_data (sorted_data: POINTER; stride: INTEGER; n: INTEGER): REAL_64
 		external
 			"C inline use <eif_gsl.h>"
@@ -436,12 +495,93 @@ feature -- Externals
 			]"
 		end
 
+	c_gsl_stats_short_median (sorted_data: POINTER; stride: INTEGER; n: INTEGER): REAL_64
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_stats_short_median ($sorted_data, (size_t const)$stride, (size_t const)$n);
+			]"
+		end
+
 	c_gsl_stats_short_quantile_from_sorted_data (sorted_data: POINTER; stride: INTEGER; n: INTEGER; f: REAL_64): REAL_64
 		external
 			"C inline use <eif_gsl.h>"
 		alias
 			"[
 				return gsl_stats_short_quantile_from_sorted_data ($sorted_data, (size_t const)$stride, (size_t const)$n, (double const)$f);
+			]"
+		end
+
+	c_gsl_stats_short_trmean_from_sorted_data (trim: REAL_64; sorted_data: POINTER; stride: INTEGER; n: INTEGER): REAL_64
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_stats_short_trmean_from_sorted_data ((double const)$trim, $sorted_data, (size_t const)$stride, (size_t const)$n);
+			]"
+		end
+
+	c_gsl_stats_short_gastwirth_from_sorted_data (sorted_data: POINTER; stride: INTEGER; n: INTEGER): REAL_64
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_stats_short_gastwirth_from_sorted_data ($sorted_data, (size_t const)$stride, (size_t const)$n);
+			]"
+		end
+
+	c_gsl_stats_short_mad0 (data: POINTER; stride: INTEGER; n: INTEGER; work: POINTER): REAL_64
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_stats_short_mad0 ($data, (size_t const)$stride, (size_t const)$n, $work);
+			]"
+		end
+
+	c_gsl_stats_short_mad (data: POINTER; stride: INTEGER; n: INTEGER; work: POINTER): REAL_64
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_stats_short_mad ($data, (size_t const)$stride, (size_t const)$n, $work);
+			]"
+		end
+
+	c_gsl_stats_short_sn0_from_sorted_data (sorted_data: POINTER; stride: INTEGER; n: INTEGER; work: POINTER): INTEGER
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_stats_short_Sn0_from_sorted_data ($sorted_data, (size_t const)$stride, (size_t const)$n, $work);
+			]"
+		end
+
+	c_gsl_stats_short_sn_from_sorted_data (sorted_data: POINTER; stride: INTEGER; n: INTEGER; work: POINTER): REAL_64
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_stats_short_Sn_from_sorted_data ($sorted_data, (size_t const)$stride, (size_t const)$n, $work);
+			]"
+		end
+
+	c_gsl_stats_short_qn0_from_sorted_data (sorted_data: POINTER; stride: INTEGER; n: INTEGER; work: POINTER; work_int: POINTER): INTEGER
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_stats_short_Qn0_from_sorted_data ($sorted_data, (size_t const)$stride, (size_t const)$n, $work, $work_int);
+			]"
+		end
+
+	c_gsl_stats_short_qn_from_sorted_data (sorted_data: POINTER; stride: INTEGER; n: INTEGER; work: POINTER; work_int: POINTER): REAL_64
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_stats_short_Qn_from_sorted_data ($sorted_data, (size_t const)$stride, (size_t const)$n, $work, $work_int);
 			]"
 		end
 

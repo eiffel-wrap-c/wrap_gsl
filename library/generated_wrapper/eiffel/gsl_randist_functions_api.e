@@ -313,6 +313,21 @@ feature -- Access
 			Result := c_gsl_ran_multivariate_gaussian_vcov (x.item, sigma_hat.item)
 		end
 
+	gsl_ran_wishart (r: GSL_RNG_STRUCT_API; df: REAL_64; l: GSL_MATRIX_STRUCT_API; a_result: GSL_MATRIX_STRUCT_API; work: GSL_MATRIX_STRUCT_API): INTEGER 
+		do
+			Result := c_gsl_ran_wishart (r.item, df, l.item, a_result.item, work.item)
+		end
+
+	gsl_ran_wishart_log_pdf (x: GSL_MATRIX_STRUCT_API; l_x: GSL_MATRIX_STRUCT_API; df: REAL_64; l: GSL_MATRIX_STRUCT_API; a_result: POINTER; work: GSL_MATRIX_STRUCT_API): INTEGER 
+		do
+			Result := c_gsl_ran_wishart_log_pdf (x.item, l_x.item, df, l.item, a_result, work.item)
+		end
+
+	gsl_ran_wishart_pdf (x: GSL_MATRIX_STRUCT_API; l_x: GSL_MATRIX_STRUCT_API; df: REAL_64; l: GSL_MATRIX_STRUCT_API; a_result: POINTER; work: GSL_MATRIX_STRUCT_API): INTEGER 
+		do
+			Result := c_gsl_ran_wishart_pdf (x.item, l_x.item, df, l.item, a_result, work.item)
+		end
+
 	gsl_ran_landau (r: GSL_RNG_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_ran_landau (r.item)
@@ -926,6 +941,33 @@ feature -- Externals
 		alias
 			"[
 				return gsl_ran_multivariate_gaussian_vcov ((gsl_matrix const*)$x, (gsl_matrix*)$sigma_hat);
+			]"
+		end
+
+	c_gsl_ran_wishart (r: POINTER; df: REAL_64; l: POINTER; a_result: POINTER; work: POINTER): INTEGER
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_ran_wishart ((gsl_rng const*)$r, (double const)$df, (gsl_matrix const*)$l, (gsl_matrix*)$a_result, (gsl_matrix*)$work);
+			]"
+		end
+
+	c_gsl_ran_wishart_log_pdf (x: POINTER; l_x: POINTER; df: REAL_64; l: POINTER; a_result: POINTER; work: POINTER): INTEGER
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_ran_wishart_log_pdf ((gsl_matrix const*)$x, (gsl_matrix const*)$l_x, (double const)$df, (gsl_matrix const*)$l, (double*)$a_result, (gsl_matrix*)$work);
+			]"
+		end
+
+	c_gsl_ran_wishart_pdf (x: POINTER; l_x: POINTER; df: REAL_64; l: POINTER; a_result: POINTER; work: POINTER): INTEGER
+		external
+			"C inline use <eif_gsl.h>"
+		alias
+			"[
+				return gsl_ran_wishart_pdf ((gsl_matrix const*)$x, (gsl_matrix const*)$l_x, (double const)$df, (gsl_matrix const*)$l, (double*)$a_result, (gsl_matrix*)$work);
 			]"
 		end
 

@@ -56,7 +56,7 @@ Using vcpkg (https://github.com/microsoft/vcpkg) tool, you can install libyaml l
 
 	vcpkg install gsl:x64-windows
 	
-Then copy the files `gsl.dll` and `gsl.lib` to `%LIBRARY_PATH%wrap_library/library/C/include/lib`
+Then copy the files `gsl.dll`, `gslcblas.dll`, `gslcblas.lib` and `gsl.lib` to `%LIBRARY_PATH%wrap_library/library/C/lib`
 Where `%LIBRARY_PATH%` is where you clone/download `wrap_gsl` source code.
 On windows if you are using a DLL be sure the DLL is in your PATH when you execute the examples.
 
