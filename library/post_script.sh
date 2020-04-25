@@ -40,6 +40,12 @@ rm gsl_vector_uchar_functions_api.e
 rm gsl_vector_uint_functions_api.e
 rm gsl_vector_ulong_functions_api.e
 rm gsl_vector_ushort_functions_api.e
+rm io_file_struct_api.e
+rm rm io_codecvt_struct_api.e
+rm io_marker_struct_api.e
+rm io_wide_data_struct_api.e
+
+rm 
 
 cd ..
 cd ..
