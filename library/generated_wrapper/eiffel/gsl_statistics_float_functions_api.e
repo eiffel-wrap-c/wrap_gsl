@@ -9,284 +9,284 @@ class GSL_STATISTICS_FLOAT_FUNCTIONS_API
 
 feature -- Access
 
-	gsl_stats_float_mean (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_mean (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_mean (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_mean (data.item, stride, n)
 		end
 
-	gsl_stats_float_variance (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_variance (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_variance (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_variance (data.item, stride, n)
 		end
 
-	gsl_stats_float_sd (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_sd (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_sd (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_sd (data.item, stride, n)
 		end
 
-	gsl_stats_float_variance_with_fixed_mean (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
+	gsl_stats_float_variance_with_fixed_mean (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_variance_with_fixed_mean (data.area.base_address, stride, n, mean)
+			Result := c_gsl_stats_float_variance_with_fixed_mean (data.item, stride, n, mean)
 		end
 
-	gsl_stats_float_sd_with_fixed_mean (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
+	gsl_stats_float_sd_with_fixed_mean (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_sd_with_fixed_mean (data.area.base_address, stride, n, mean)
+			Result := c_gsl_stats_float_sd_with_fixed_mean (data.item, stride, n, mean)
 		end
 
-	gsl_stats_float_tss (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_tss (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_tss (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_tss (data.item, stride, n)
 		end
 
-	gsl_stats_float_tss_m (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
+	gsl_stats_float_tss_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_tss_m (data.area.base_address, stride, n, mean)
+			Result := c_gsl_stats_float_tss_m (data.item, stride, n, mean)
 		end
 
-	gsl_stats_float_absdev (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_absdev (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_absdev (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_absdev (data.item, stride, n)
 		end
 
-	gsl_stats_float_skew (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_skew (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_skew (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_skew (data.item, stride, n)
 		end
 
-	gsl_stats_float_kurtosis (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_kurtosis (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_kurtosis (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_kurtosis (data.item, stride, n)
 		end
 
-	gsl_stats_float_lag1_autocorrelation (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_lag1_autocorrelation (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_lag1_autocorrelation (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_lag1_autocorrelation (data.item, stride, n)
 		end
 
-	gsl_stats_float_covariance (data1: ARRAY [REAL]; stride1: INTEGER; data2: ARRAY [REAL]; stride2: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_covariance (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_covariance (data1.area.base_address, stride1, data2.area.base_address, stride2, n)
+			Result := c_gsl_stats_float_covariance (data1.item, stride1, data2.item, stride2, n)
 		end
 
-	gsl_stats_float_correlation (data1: ARRAY [REAL]; stride1: INTEGER; data2: ARRAY [REAL]; stride2: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_correlation (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_correlation (data1.area.base_address, stride1, data2.area.base_address, stride2, n)
+			Result := c_gsl_stats_float_correlation (data1.item, stride1, data2.item, stride2, n)
 		end
 
-	gsl_stats_float_spearman (data1: ARRAY [REAL]; stride1: INTEGER; data2: ARRAY [REAL]; stride2: INTEGER; n: INTEGER; work: ARRAY [REAL_64]): REAL_64 
+	gsl_stats_float_spearman (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
-			Result := c_gsl_stats_float_spearman (data1.area.base_address, stride1, data2.area.base_address, stride2, n, work.area.base_address)
+			Result := c_gsl_stats_float_spearman (data1.item, stride1, data2.item, stride2, n, work.item)
 		end
 
-	gsl_stats_float_variance_m (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
+	gsl_stats_float_variance_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_variance_m (data.area.base_address, stride, n, mean)
+			Result := c_gsl_stats_float_variance_m (data.item, stride, n, mean)
 		end
 
-	gsl_stats_float_sd_m (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
+	gsl_stats_float_sd_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_sd_m (data.area.base_address, stride, n, mean)
+			Result := c_gsl_stats_float_sd_m (data.item, stride, n, mean)
 		end
 
-	gsl_stats_float_absdev_m (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
+	gsl_stats_float_absdev_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_absdev_m (data.area.base_address, stride, n, mean)
+			Result := c_gsl_stats_float_absdev_m (data.item, stride, n, mean)
 		end
 
-	gsl_stats_float_skew_m_sd (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; mean: REAL_64; sd: REAL_64): REAL_64 
+	gsl_stats_float_skew_m_sd (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64; sd: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_skew_m_sd (data.area.base_address, stride, n, mean, sd)
+			Result := c_gsl_stats_float_skew_m_sd (data.item, stride, n, mean, sd)
 		end
 
-	gsl_stats_float_kurtosis_m_sd (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; mean: REAL_64; sd: REAL_64): REAL_64 
+	gsl_stats_float_kurtosis_m_sd (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64; sd: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_kurtosis_m_sd (data.area.base_address, stride, n, mean, sd)
+			Result := c_gsl_stats_float_kurtosis_m_sd (data.item, stride, n, mean, sd)
 		end
 
-	gsl_stats_float_lag1_autocorrelation_m (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
+	gsl_stats_float_lag1_autocorrelation_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_lag1_autocorrelation_m (data.area.base_address, stride, n, mean)
+			Result := c_gsl_stats_float_lag1_autocorrelation_m (data.item, stride, n, mean)
 		end
 
-	gsl_stats_float_covariance_m (data1: ARRAY [REAL]; stride1: INTEGER; data2: ARRAY [REAL]; stride2: INTEGER; n: INTEGER; mean1: REAL_64; mean2: REAL_64): REAL_64 
+	gsl_stats_float_covariance_m (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER; mean1: REAL_64; mean2: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_covariance_m (data1.area.base_address, stride1, data2.area.base_address, stride2, n, mean1, mean2)
+			Result := c_gsl_stats_float_covariance_m (data1.item, stride1, data2.item, stride2, n, mean1, mean2)
 		end
 
-	gsl_stats_float_wmean (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_wmean (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_wmean (w.area.base_address, wstride, data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_wmean (w.item, wstride, data.item, stride, n)
 		end
 
-	gsl_stats_float_wvariance (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_wvariance (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_wvariance (w.area.base_address, wstride, data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_wvariance (w.item, wstride, data.item, stride, n)
 		end
 
-	gsl_stats_float_wsd (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_wsd (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_wsd (w.area.base_address, wstride, data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_wsd (w.item, wstride, data.item, stride, n)
 		end
 
-	gsl_stats_float_wvariance_with_fixed_mean (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
+	gsl_stats_float_wvariance_with_fixed_mean (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_wvariance_with_fixed_mean (w.area.base_address, wstride, data.area.base_address, stride, n, mean)
+			Result := c_gsl_stats_float_wvariance_with_fixed_mean (w.item, wstride, data.item, stride, n, mean)
 		end
 
-	gsl_stats_float_wsd_with_fixed_mean (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
+	gsl_stats_float_wsd_with_fixed_mean (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_wsd_with_fixed_mean (w.area.base_address, wstride, data.area.base_address, stride, n, mean)
+			Result := c_gsl_stats_float_wsd_with_fixed_mean (w.item, wstride, data.item, stride, n, mean)
 		end
 
-	gsl_stats_float_wtss (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_wtss (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_wtss (w.area.base_address, wstride, data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_wtss (w.item, wstride, data.item, stride, n)
 		end
 
-	gsl_stats_float_wtss_m (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
+	gsl_stats_float_wtss_m (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_wtss_m (w.area.base_address, wstride, data.area.base_address, stride, n, wmean)
+			Result := c_gsl_stats_float_wtss_m (w.item, wstride, data.item, stride, n, wmean)
 		end
 
-	gsl_stats_float_wabsdev (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_wabsdev (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_wabsdev (w.area.base_address, wstride, data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_wabsdev (w.item, wstride, data.item, stride, n)
 		end
 
-	gsl_stats_float_wskew (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_wskew (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_wskew (w.area.base_address, wstride, data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_wskew (w.item, wstride, data.item, stride, n)
 		end
 
-	gsl_stats_float_wkurtosis (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_wkurtosis (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_wkurtosis (w.area.base_address, wstride, data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_wkurtosis (w.item, wstride, data.item, stride, n)
 		end
 
-	gsl_stats_float_wvariance_m (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
+	gsl_stats_float_wvariance_m (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_wvariance_m (w.area.base_address, wstride, data.area.base_address, stride, n, wmean)
+			Result := c_gsl_stats_float_wvariance_m (w.item, wstride, data.item, stride, n, wmean)
 		end
 
-	gsl_stats_float_wsd_m (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
+	gsl_stats_float_wsd_m (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_wsd_m (w.area.base_address, wstride, data.area.base_address, stride, n, wmean)
+			Result := c_gsl_stats_float_wsd_m (w.item, wstride, data.item, stride, n, wmean)
 		end
 
-	gsl_stats_float_wabsdev_m (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
+	gsl_stats_float_wabsdev_m (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_wabsdev_m (w.area.base_address, wstride, data.area.base_address, stride, n, wmean)
+			Result := c_gsl_stats_float_wabsdev_m (w.item, wstride, data.item, stride, n, wmean)
 		end
 
-	gsl_stats_float_wskew_m_sd (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; wmean: REAL_64; wsd: REAL_64): REAL_64 
+	gsl_stats_float_wskew_m_sd (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64; wsd: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_wskew_m_sd (w.area.base_address, wstride, data.area.base_address, stride, n, wmean, wsd)
+			Result := c_gsl_stats_float_wskew_m_sd (w.item, wstride, data.item, stride, n, wmean, wsd)
 		end
 
-	gsl_stats_float_wkurtosis_m_sd (w: ARRAY [REAL]; wstride: INTEGER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; wmean: REAL_64; wsd: REAL_64): REAL_64 
+	gsl_stats_float_wkurtosis_m_sd (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64; wsd: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_wkurtosis_m_sd (w.area.base_address, wstride, data.area.base_address, stride, n, wmean, wsd)
+			Result := c_gsl_stats_float_wkurtosis_m_sd (w.item, wstride, data.item, stride, n, wmean, wsd)
 		end
 
-	gsl_stats_float_pvariance (data1: ARRAY [REAL]; stride1: INTEGER; n1: INTEGER; data2: ARRAY [REAL]; stride2: INTEGER; n2: INTEGER): REAL_64 
+	gsl_stats_float_pvariance (data1: MANAGED_POINTER; stride1: INTEGER; n1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n2: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_pvariance (data1.area.base_address, stride1, n1, data2.area.base_address, stride2, n2)
+			Result := c_gsl_stats_float_pvariance (data1.item, stride1, n1, data2.item, stride2, n2)
 		end
 
-	gsl_stats_float_ttest (data1: ARRAY [REAL]; stride1: INTEGER; n1: INTEGER; data2: ARRAY [REAL]; stride2: INTEGER; n2: INTEGER): REAL_64 
+	gsl_stats_float_ttest (data1: MANAGED_POINTER; stride1: INTEGER; n1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n2: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_ttest (data1.area.base_address, stride1, n1, data2.area.base_address, stride2, n2)
+			Result := c_gsl_stats_float_ttest (data1.item, stride1, n1, data2.item, stride2, n2)
 		end
 
-	gsl_stats_float_max (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL 
+	gsl_stats_float_max (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL 
 		do
-			Result := c_gsl_stats_float_max (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_max (data.item, stride, n)
 		end
 
-	gsl_stats_float_min (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL 
+	gsl_stats_float_min (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL 
 		do
-			Result := c_gsl_stats_float_min (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_min (data.item, stride, n)
 		end
 
-	gsl_stats_float_minmax (min: POINTER; max: POINTER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER) 
+	gsl_stats_float_minmax (min: POINTER; max: POINTER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER) 
 		do
-			c_gsl_stats_float_minmax (min, max, data.area.base_address, stride, n)
+			c_gsl_stats_float_minmax (min, max, data.item, stride, n)
 		end
 
-	gsl_stats_float_max_index (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): INTEGER 
+	gsl_stats_float_max_index (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): INTEGER 
 		do
-			Result := c_gsl_stats_float_max_index (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_max_index (data.item, stride, n)
 		end
 
-	gsl_stats_float_min_index (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): INTEGER 
+	gsl_stats_float_min_index (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): INTEGER 
 		do
-			Result := c_gsl_stats_float_min_index (data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_min_index (data.item, stride, n)
 		end
 
-	gsl_stats_float_minmax_index (min_index: POINTER; max_index: POINTER; data: ARRAY [REAL]; stride: INTEGER; n: INTEGER) 
+	gsl_stats_float_minmax_index (min_index: POINTER; max_index: POINTER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER) 
 		do
-			c_gsl_stats_float_minmax_index (min_index, max_index, data.area.base_address, stride, n)
+			c_gsl_stats_float_minmax_index (min_index, max_index, data.item, stride, n)
 		end
 
-	gsl_stats_float_select (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; k: INTEGER): REAL 
+	gsl_stats_float_select (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; k: INTEGER): REAL 
 		do
-			Result := c_gsl_stats_float_select (data.area.base_address, stride, n, k)
+			Result := c_gsl_stats_float_select (data.item, stride, n, k)
 		end
 
-	gsl_stats_float_median_from_sorted_data (sorted_data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_median_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_median_from_sorted_data (sorted_data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_median_from_sorted_data (sorted_data.item, stride, n)
 		end
 
-	gsl_stats_float_median (sorted_data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_median (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_median (sorted_data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_median (sorted_data.item, stride, n)
 		end
 
-	gsl_stats_float_quantile_from_sorted_data (sorted_data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; f: REAL_64): REAL_64 
+	gsl_stats_float_quantile_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; f: REAL_64): REAL_64 
 		do
-			Result := c_gsl_stats_float_quantile_from_sorted_data (sorted_data.area.base_address, stride, n, f)
+			Result := c_gsl_stats_float_quantile_from_sorted_data (sorted_data.item, stride, n, f)
 		end
 
-	gsl_stats_float_trmean_from_sorted_data (trim: REAL_64; sorted_data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_trmean_from_sorted_data (trim: REAL_64; sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_trmean_from_sorted_data (trim, sorted_data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_trmean_from_sorted_data (trim, sorted_data.item, stride, n)
 		end
 
-	gsl_stats_float_gastwirth_from_sorted_data (sorted_data: ARRAY [REAL]; stride: INTEGER; n: INTEGER): REAL_64 
+	gsl_stats_float_gastwirth_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
-			Result := c_gsl_stats_float_gastwirth_from_sorted_data (sorted_data.area.base_address, stride, n)
+			Result := c_gsl_stats_float_gastwirth_from_sorted_data (sorted_data.item, stride, n)
 		end
 
-	gsl_stats_float_mad0 (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; work: ARRAY [REAL_64]): REAL_64 
+	gsl_stats_float_mad0 (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
-			Result := c_gsl_stats_float_mad0 (data.area.base_address, stride, n, work.area.base_address)
+			Result := c_gsl_stats_float_mad0 (data.item, stride, n, work.item)
 		end
 
-	gsl_stats_float_mad (data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; work: ARRAY [REAL_64]): REAL_64 
+	gsl_stats_float_mad (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
-			Result := c_gsl_stats_float_mad (data.area.base_address, stride, n, work.area.base_address)
+			Result := c_gsl_stats_float_mad (data.item, stride, n, work.item)
 		end
 
-	gsl_stats_float_sn0_from_sorted_data (sorted_data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; work: ARRAY [REAL]): REAL 
+	gsl_stats_float_sn0_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL 
 		do
-			Result := c_gsl_stats_float_sn0_from_sorted_data (sorted_data.area.base_address, stride, n, work.area.base_address)
+			Result := c_gsl_stats_float_sn0_from_sorted_data (sorted_data.item, stride, n, work.item)
 		end
 
-	gsl_stats_float_sn_from_sorted_data (sorted_data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; work: ARRAY [REAL]): REAL_64 
+	gsl_stats_float_sn_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
-			Result := c_gsl_stats_float_sn_from_sorted_data (sorted_data.area.base_address, stride, n, work.area.base_address)
+			Result := c_gsl_stats_float_sn_from_sorted_data (sorted_data.item, stride, n, work.item)
 		end
 
-	gsl_stats_float_qn0_from_sorted_data (sorted_data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; work: ARRAY [REAL]; work_int: ARRAY [INTEGER]): REAL 
+	gsl_stats_float_qn0_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER; work_int: MANAGED_POINTER): REAL 
 		do
-			Result := c_gsl_stats_float_qn0_from_sorted_data (sorted_data.area.base_address, stride, n, work.area.base_address, work_int.area.base_address)
+			Result := c_gsl_stats_float_qn0_from_sorted_data (sorted_data.item, stride, n, work.item, work_int.item)
 		end
 
-	gsl_stats_float_qn_from_sorted_data (sorted_data: ARRAY [REAL]; stride: INTEGER; n: INTEGER; work: ARRAY [REAL]; work_int: ARRAY [INTEGER]): REAL_64 
+	gsl_stats_float_qn_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER; work_int: MANAGED_POINTER): REAL_64 
 		do
-			Result := c_gsl_stats_float_qn_from_sorted_data (sorted_data.area.base_address, stride, n, work.area.base_address, work_int.area.base_address)
+			Result := c_gsl_stats_float_qn_from_sorted_data (sorted_data.item, stride, n, work.item, work_int.item)
 		end
 
 feature -- Externals

@@ -52,15 +52,15 @@ feature {NONE} -- Initialization
 				attached {GSL_SPLINE_STRUCT_API} gsl_spline.gsl_spline_alloc (gsl_inter.gsl_interp_akima, n) as spline_akima and then
 				attached {GSL_SPLINE_STRUCT_API} gsl_spline.gsl_spline_alloc (gsl_inter.gsl_interp_steffen, n) as spline_steffen
 			then
-				if gsl_spline.gsl_spline_init (spline_cubic, x, y, n) /= 0 then
+				if gsl_spline.gsl_spline_init (spline_cubic, {MANAGED_POINTER_HELPER}.from_array_of_real_64 (x), {MANAGED_POINTER_HELPER}.from_array_of_real_64 (y), n) /= 0 then
 					print ("Error in gsl_spline_init with spline_cubic %N")
 					{EXCEPTIONS}.die (1)
 				end
-				if gsl_spline.gsl_spline_init (spline_akima, x, y, n) /= 0 then
+				if gsl_spline.gsl_spline_init (spline_akima, {MANAGED_POINTER_HELPER}.from_array_of_real_64 (x), {MANAGED_POINTER_HELPER}.from_array_of_real_64 (y), n) /= 0 then
 					print ("Error in gsl_spline_init with spline_akima %N")
 					{EXCEPTIONS}.die (1)
 				end
-				if gsl_spline.gsl_spline_init (spline_steffen, x, y, n) /= 0 then
+				if gsl_spline.gsl_spline_init (spline_steffen, {MANAGED_POINTER_HELPER}.from_array_of_real_64 (x), {MANAGED_POINTER_HELPER}.from_array_of_real_64(y), n) /= 0 then
 					print ("Error in gsl_spline_init with spline_steffen %N")
 					{EXCEPTIONS}.die (1)
 				end

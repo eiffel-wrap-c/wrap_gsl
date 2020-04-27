@@ -17,9 +17,9 @@ feature -- Access
 
 		end
 
-	gsl_spline_init (spline: GSL_SPLINE_STRUCT_API; xa: ARRAY [REAL_64]; ya: ARRAY [REAL_64]; size: INTEGER): INTEGER 
+	gsl_spline_init (spline: GSL_SPLINE_STRUCT_API; xa: MANAGED_POINTER; ya: MANAGED_POINTER; size: INTEGER): INTEGER 
 		do
-			Result := c_gsl_spline_init (spline.item, xa.area.base_address, ya.area.base_address, size)
+			Result := c_gsl_spline_init (spline.item, xa.item, ya.item, size)
 		end
 
 	gsl_spline_name (spline: GSL_SPLINE_STRUCT_API): POINTER 

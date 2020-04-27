@@ -117,19 +117,19 @@ feature -- Access
 			]"
 		end
 
-	gsl_ran_dirichlet (r: GSL_RNG_STRUCT_API; k: INTEGER; alpha: ARRAY [REAL_64]; theta: ARRAY [REAL_64]) 
+	gsl_ran_dirichlet (r: GSL_RNG_STRUCT_API; k: INTEGER; alpha: MANAGED_POINTER; theta: MANAGED_POINTER) 
 		do
-			c_gsl_ran_dirichlet (r.item, k, alpha.area.base_address, theta.area.base_address)
+			c_gsl_ran_dirichlet (r.item, k, alpha.item, theta.item)
 		end
 
-	gsl_ran_dirichlet_pdf (k: INTEGER; alpha: ARRAY [REAL_64]; theta: ARRAY [REAL_64]): REAL_64 
+	gsl_ran_dirichlet_pdf (k: INTEGER; alpha: MANAGED_POINTER; theta: MANAGED_POINTER): REAL_64 
 		do
-			Result := c_gsl_ran_dirichlet_pdf (k, alpha.area.base_address, theta.area.base_address)
+			Result := c_gsl_ran_dirichlet_pdf (k, alpha.item, theta.item)
 		end
 
-	gsl_ran_dirichlet_lnpdf (k: INTEGER; alpha: ARRAY [REAL_64]; theta: ARRAY [REAL_64]): REAL_64 
+	gsl_ran_dirichlet_lnpdf (k: INTEGER; alpha: MANAGED_POINTER; theta: MANAGED_POINTER): REAL_64 
 		do
-			Result := c_gsl_ran_dirichlet_lnpdf (k, alpha.area.base_address, theta.area.base_address)
+			Result := c_gsl_ran_dirichlet_lnpdf (k, alpha.item, theta.item)
 		end
 
 	gsl_ran_erlang (r: GSL_RNG_STRUCT_API; a: REAL_64; n: REAL_64): REAL_64 
@@ -440,19 +440,19 @@ feature -- Access
 			]"
 		end
 
-	gsl_ran_multinomial (r: GSL_RNG_STRUCT_API; k: INTEGER; n: INTEGER; p: ARRAY [REAL_64]; n_1: ARRAY [INTEGER]) 
+	gsl_ran_multinomial (r: GSL_RNG_STRUCT_API; k: INTEGER; n: INTEGER; p: MANAGED_POINTER; n_1: MANAGED_POINTER) 
 		do
-			c_gsl_ran_multinomial (r.item, k, n, p.area.base_address, n_1.area.base_address)
+			c_gsl_ran_multinomial (r.item, k, n, p.item, n_1.item)
 		end
 
-	gsl_ran_multinomial_pdf (k: INTEGER; p: ARRAY [REAL_64]; n: ARRAY [INTEGER]): REAL_64 
+	gsl_ran_multinomial_pdf (k: INTEGER; p: MANAGED_POINTER; n: MANAGED_POINTER): REAL_64 
 		do
-			Result := c_gsl_ran_multinomial_pdf (k, p.area.base_address, n.area.base_address)
+			Result := c_gsl_ran_multinomial_pdf (k, p.item, n.item)
 		end
 
-	gsl_ran_multinomial_lnpdf (k: INTEGER; p: ARRAY [REAL_64]; n: ARRAY [INTEGER]): REAL_64 
+	gsl_ran_multinomial_lnpdf (k: INTEGER; p: MANAGED_POINTER; n: MANAGED_POINTER): REAL_64 
 		do
-			Result := c_gsl_ran_multinomial_lnpdf (k, p.area.base_address, n.area.base_address)
+			Result := c_gsl_ran_multinomial_lnpdf (k, p.item, n.item)
 		end
 
 	gsl_ran_negative_binomial (r: GSL_RNG_STRUCT_API; p: REAL_64; n: REAL_64): INTEGER 
@@ -502,9 +502,9 @@ feature -- Access
 			Result := c_gsl_ran_poisson (r.item, mu)
 		end
 
-	gsl_ran_poisson_array (r: GSL_RNG_STRUCT_API; n: INTEGER; array: ARRAY [INTEGER]; mu: REAL_64) 
+	gsl_ran_poisson_array (r: GSL_RNG_STRUCT_API; n: INTEGER; array: MANAGED_POINTER; mu: REAL_64) 
 		do
-			c_gsl_ran_poisson_array (r.item, n, array.area.base_address, mu)
+			c_gsl_ran_poisson_array (r.item, n, array.item, mu)
 		end
 
 	gsl_ran_poisson_pdf (k: INTEGER; mu: REAL_64): REAL_64

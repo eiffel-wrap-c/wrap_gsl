@@ -134,7 +134,7 @@ feature {NONE} -- Initialization
 
 				create gsl_statistics
 				dof := l_n - l_ncoeffs
-				-- tss := gsl_statistics.gsl_stats_wtss (vector_to_array_of_double (w), 1, vector_to_array_of_double (y), 1, y.size)
+				--tss := gsl_statistics.gsl_stats_wtss (vector_to_array_of_double (w), 1, vector_to_array_of_double (y), 1, y.size)
 				tss := gsl_statistics.c_gsl_stats_wtss (w.data, 1, y.data, 1, y.size)
 				rsq := 1.0 - chisq / tss;
 
