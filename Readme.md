@@ -30,7 +30,7 @@ This will create a directory called gsl-2.6 in your home directory. Change to th
 
 Now configure the installation
 
-	./configure --prefix=/home/yourname/gsl
+	./configure 
 
 If there are no errors, compile the library. This step will take several minutes.
 
@@ -63,7 +63,7 @@ On windows if you are using a DLL be sure the DLL is in your PATH when you execu
 
 ## Status
 
-Work in progress
+Work in progress.
 
 
 ## Examples
