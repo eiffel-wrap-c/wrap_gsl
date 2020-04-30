@@ -52,7 +52,7 @@ Rebuild the ldconfig cache using
 	
 ### Windows
 
-Using vcpkg (https://github.com/microsoft/vcpkg) tool, you can install libyaml library
+Using vcpkg (https://github.com/microsoft/vcpkg) tool, you can install libgsl library
 
 	vcpkg install gsl:x64-windows
 	
