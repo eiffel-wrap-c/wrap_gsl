@@ -31,8 +31,6 @@ feature {NONE} -- Initialization
 		local
 			xi, yi: REAL_64
 			i,j: INTEGER
-			gsl_inter: GSL_INTERPOLATION
-			gsl_spline: GSL_SPLINE_FUNCTIONS_API
 			res: INTEGER
 			l_n, l_ncoeffs, l_nbreak: INTEGER
 			bw: GSL_BSPLINE_WORKSPACE_STRUCT_API
@@ -42,35 +40,26 @@ feature {NONE} -- Initialization
 			xm, cov: GSL_MATRIX_STRUCT_API
 			mw: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API
 			chisq, Rsq, dof, tss: REAL_64
-			gsl_rng: GSL_RNG
-			gsl_bsplines: GSL_BSPLINE
 			gsl_vector_double: GSL_VECTOR_DOUBLE
 			gsl_matrix_double: GSL_MATRIX_DOUBLE
-			gsl_multifit: GSL_MULTIFIT
 			sigma: REAL_64
-			gsl_randist: GSL_RANDIST_FUNCTIONS_API
-			gsl_statistics: GSL_STATISTICS_DOUBLE_FUNCTIONS_API
 			bj, yerr: REAL_64
 		do
 			l_n := N
   			l_ncoeffs := NCOEFFS
   			L_nbreak := NBREAK
 
-  			create gsl_rng
   				-- TODO check if gsl_rng_env_setup could return a default pointer.
   			if
-  				attached {GSL_RNG_TYPE_STRUCT_API} gsl_rng.gsl_rng_env_setup as gnr_type and then
-  				attached {GSL_RNG_STRUCT_API} gsl_rng.gsl_rng_alloc(gsl_rng.gsl_rng_default) as r
+  				attached {GSL_RNG_TYPE_STRUCT_API} {GSL_RNG}.gsl_rng_env_setup as gnr_type and then
+  				attached {GSL_RNG_STRUCT_API} {GSL_RNG}.gsl_rng_alloc({GSL_RNG}.gsl_rng_default) as r
   			then
 
-				create gsl_bsplines
 					-- allocate a cubic bspline workspace (k = 4)
 				create gsl_vector_double
 				create gsl_matrix_double
-				create gsl_multifit
-				create gsl_randist
 
-				bw := gsl_bsplines.gsl_bspline_alloc(4, nbreak)
+				bw := {GSL_BSPLINE}.gsl_bspline_alloc(4, nbreak)
 				bv := gsl_vector_double.gsl_vector_alloc(ncoeffs) -- bv = B
 
 				x := gsl_vector_double.gsl_vector_alloc (n)
@@ -80,7 +69,7 @@ feature {NONE} -- Initialization
 				w := gsl_vector_double.gsl_vector_alloc(n)
 
 				cov := gsl_matrix_double.gsl_matrix_alloc (ncoeffs, ncoeffs)
-				mw := gsl_multifit.gsl_multifit_linear_alloc(n, ncoeffs)
+				mw := {GSL_MULTIFIT}.gsl_multifit_linear_alloc(n, ncoeffs)
 
 					-- this is the data to be fitted.
 				from
@@ -91,7 +80,7 @@ feature {NONE} -- Initialization
 					xi := (15.0 / (N - 1)) * i
 					yi := {DOUBLE_MATH}.cosine (xi) * {DOUBLE_MATH}.exp (-0.1 * xi)
 					sigma := 0.1 + yi
-					dy := gsl_randist.gsl_ran_gaussian(r, sigma)
+					dy := {GSL_RANDIST_FUNCTIONS_API}.gsl_ran_gaussian(r, sigma)
 					yi := yi + dy
 					gsl_vector_double.gsl_vector_set (x, i, xi)
 					gsl_vector_double.gsl_vector_set (y, i, yi)
@@ -101,7 +90,7 @@ feature {NONE} -- Initialization
 				end
 
 					-- use uniform breakpoints on [0, 15]
-				if gsl_bsplines.gsl_bspline_knots_uniform (0.0, 15.0, bw) /= 0 then
+				if {GSL_BSPLINE}.gsl_bspline_knots_uniform (0.0, 15.0, bw) /= 0 then
 					print ("Error calling gsl_bspline_knots_uniform%N")
 					{EXCEPTIONS}.die (1)
 				end
@@ -113,7 +102,7 @@ feature {NONE} -- Initialization
 				loop
 					xi := gsl_vector_double.gsl_vector_get (x, i)
 						--  compute B_j(xi) for all j
-					if gsl_bsplines.gsl_bspline_eval(xi, bv, bw) /= 0 then
+					if {GSL_BSPLINE}.gsl_bspline_eval(xi, bv, bw) /= 0 then
 						print ("Error calling gsl_bspline_eval%N")
 						{EXCEPTIONS}.die (1)
 					end
@@ -130,12 +119,11 @@ feature {NONE} -- Initialization
 					i := i + 1
 				end
 					--  do the fit
-				res := gsl_multifit.gsl_multifit_wlinear (xm, w, y, c, cov, $chisq, mw)
+				res := {GSL_MULTIFIT}.gsl_multifit_wlinear (xm, w, y, c, cov, $chisq, mw)
 
-				create gsl_statistics
 				dof := l_n - l_ncoeffs
 				--tss := gsl_statistics.gsl_stats_wtss (vector_to_array_of_double (w), 1, vector_to_array_of_double (y), 1, y.size)
-				tss := gsl_statistics.c_gsl_stats_wtss (w.data, 1, y.data, 1, y.size)
+				tss := {GSL_STATISTICS_DOUBLE_FUNCTIONS_API}.c_gsl_stats_wtss (w.data, 1, y.data, 1, y.size)
 				rsq := 1.0 - chisq / tss;
 
 
@@ -148,14 +136,14 @@ feature {NONE} -- Initialization
  				until
  					xi >= 15.0
  				loop
-					res := gsl_bsplines.gsl_bspline_eval(xi, bv, bw)
-					res := gsl_multifit.gsl_multifit_linear_est(bv, c, cov, $yi, $yerr)
+					res := {GSL_BSPLINE}.gsl_bspline_eval(xi, bv, bw)
+					res := {GSL_MULTIFIT}.gsl_multifit_linear_est(bv, c, cov, $yi, $yerr)
 					print (xi.out + " " + yi.out + "%N")
 					xi := xi + 0.1
  				end
 
-			  gsl_rng.gsl_rng_free(r)
-			  gsl_bsplines.gsl_bspline_free(bw);
+			  {GSL_RNG}.gsl_rng_free(r)
+			  {GSL_BSPLINE}.gsl_bspline_free(bw);
 			  gsl_vector_double.gsl_vector_free(bv);
 			  gsl_vector_double.gsl_vector_free(x);
 			  gsl_vector_double.gsl_vector_free(y);
@@ -163,7 +151,7 @@ feature {NONE} -- Initialization
 			  gsl_vector_double.gsl_vector_free(c);
 			  gsl_vector_double.gsl_vector_free(w);
 			  gsl_matrix_double.gsl_matrix_free(cov);
-			  gsl_multifit.gsl_multifit_linear_free(mw);
+			  {GSL_MULTIFIT}.gsl_multifit_linear_free(mw);
 			end
 		end
 

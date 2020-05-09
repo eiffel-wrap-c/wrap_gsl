@@ -32,7 +32,8 @@ feature -- Access
 			if attached c_gsl_vector_short_alloc_from_block (b.item, offset, n, stride) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_alloc_from_vector (v: GSL_VECTOR_SHORT_STRUCT_API; offset: INTEGER; n: INTEGER; stride: INTEGER): detachable GSL_VECTOR_SHORT_STRUCT_API
@@ -40,12 +41,15 @@ feature -- Access
 			if attached c_gsl_vector_short_alloc_from_vector (v.item, offset, n, stride) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_free (v: GSL_VECTOR_SHORT_STRUCT_API)
 		do
 			c_gsl_vector_short_free (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_view_array (v: POINTER; n: INTEGER): detachable GSL_VECTOR_SHORT_VIEW_STRUCT_API
@@ -53,7 +57,8 @@ feature -- Access
 			if attached c_gsl_vector_short_view_array (v, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_view_array_with_stride (base: POINTER; stride: INTEGER; n: INTEGER): detachable GSL_VECTOR_SHORT_VIEW_STRUCT_API
@@ -61,7 +66,8 @@ feature -- Access
 			if attached c_gsl_vector_short_view_array_with_stride (base, stride, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_const_view_array (v: POINTER; n: INTEGER): detachable GSL_VECTOR_SHORT_VIEW_STRUCT_API
@@ -69,7 +75,8 @@ feature -- Access
 			if attached c_gsl_vector_short_const_view_array (v, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_const_view_array_with_stride (base: POINTER; stride: INTEGER; n: INTEGER): detachable GSL_VECTOR_SHORT_VIEW_STRUCT_API
@@ -77,7 +84,8 @@ feature -- Access
 			if attached c_gsl_vector_short_const_view_array_with_stride (base, stride, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_subvector (v: GSL_VECTOR_SHORT_STRUCT_API; i: INTEGER; n: INTEGER): detachable GSL_VECTOR_SHORT_VIEW_STRUCT_API
@@ -85,7 +93,8 @@ feature -- Access
 			if attached c_gsl_vector_short_subvector (v.item, i, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_subvector_with_stride (v: GSL_VECTOR_SHORT_STRUCT_API; i: INTEGER; stride: INTEGER; n: INTEGER): detachable GSL_VECTOR_SHORT_VIEW_STRUCT_API
@@ -93,7 +102,8 @@ feature -- Access
 			if attached c_gsl_vector_short_subvector_with_stride (v.item, i, stride, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_const_subvector (v: GSL_VECTOR_SHORT_STRUCT_API; i: INTEGER; n: INTEGER): detachable GSL_VECTOR_SHORT_VIEW_STRUCT_API
@@ -101,7 +111,8 @@ feature -- Access
 			if attached c_gsl_vector_short_const_subvector (v.item, i, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_const_subvector_with_stride (v: GSL_VECTOR_SHORT_STRUCT_API; i: INTEGER; stride: INTEGER; n: INTEGER): detachable GSL_VECTOR_SHORT_VIEW_STRUCT_API
@@ -109,37 +120,50 @@ feature -- Access
 			if attached c_gsl_vector_short_const_subvector_with_stride (v.item, i, stride, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_set_zero (v: GSL_VECTOR_SHORT_STRUCT_API)
 		do
 			c_gsl_vector_short_set_zero (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_set_all (v: GSL_VECTOR_SHORT_STRUCT_API; x: INTEGER)
 		do
 			c_gsl_vector_short_set_all (v.item, x)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_set_basis (v: GSL_VECTOR_SHORT_STRUCT_API; i: INTEGER): INTEGER
 		do
 			Result := c_gsl_vector_short_set_basis (v.item, i)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_fread (stream: FILE; v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_fread (stream.file_pointer, v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_fwrite (stream: FILE; v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_fwrite (stream.file_pointer, v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_fscanf (stream: FILE; v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_fscanf (stream.file_pointer, v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_fprintf (stream: FILE; v: GSL_VECTOR_SHORT_STRUCT_API; format: STRING): INTEGER
@@ -148,136 +172,190 @@ feature -- Access
 		do
 			create format_c_string.make (format)
 			Result := c_gsl_vector_short_fprintf (stream.file_pointer, v.item, format_c_string.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_memcpy (dest: GSL_VECTOR_SHORT_STRUCT_API; src: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_memcpy (dest.item, src.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_reverse (v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_reverse (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_swap (v: GSL_VECTOR_SHORT_STRUCT_API; w: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_swap (v.item, w.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_swap_elements (v: GSL_VECTOR_SHORT_STRUCT_API; i: INTEGER; j: INTEGER): INTEGER
 		do
 			Result := c_gsl_vector_short_swap_elements (v.item, i, j)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_max (v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_max (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_min (v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_min (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_minmax (v: GSL_VECTOR_SHORT_STRUCT_API; min_out: POINTER; max_out: POINTER)
 		do
 			c_gsl_vector_short_minmax (v.item, min_out, max_out)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_max_index (v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_max_index (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_min_index (v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_min_index (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_minmax_index (v: GSL_VECTOR_SHORT_STRUCT_API; imin: POINTER; imax: POINTER)
 		do
 			c_gsl_vector_short_minmax_index (v.item, imin, imax)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_add (a: GSL_VECTOR_SHORT_STRUCT_API; b: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_add (a.item, b.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_sub (a: GSL_VECTOR_SHORT_STRUCT_API; b: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_sub (a.item, b.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_mul (a: GSL_VECTOR_SHORT_STRUCT_API; b: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_mul (a.item, b.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_div (a: GSL_VECTOR_SHORT_STRUCT_API; b: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_div (a.item, b.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_scale (a: GSL_VECTOR_SHORT_STRUCT_API; x: INTEGER): INTEGER
 		do
 			Result := c_gsl_vector_short_scale (a.item, x)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_add_constant (a: GSL_VECTOR_SHORT_STRUCT_API; x: REAL_64): INTEGER
 		do
 			Result := c_gsl_vector_short_add_constant (a.item, x)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_axpby (alpha: INTEGER; x: GSL_VECTOR_SHORT_STRUCT_API; beta: INTEGER; y: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_axpby (alpha, x.item, beta, y.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_equal (u: GSL_VECTOR_SHORT_STRUCT_API; v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_equal (u.item, v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_isnull (v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_isnull (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_ispos (v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_ispos (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_isneg (v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_isneg (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_isnonneg (v: GSL_VECTOR_SHORT_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_short_isnonneg (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_get (v: GSL_VECTOR_SHORT_STRUCT_API; i: INTEGER): INTEGER
 		do
 			Result := c_gsl_vector_short_get (v.item, i)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_set (v: GSL_VECTOR_SHORT_STRUCT_API; i: INTEGER; x: INTEGER)
 		do
 			c_gsl_vector_short_set (v.item, i, x)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_ptr (v: GSL_VECTOR_SHORT_STRUCT_API; i: INTEGER): POINTER
 		do
 			Result := c_gsl_vector_short_ptr (v.item, i)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_short_const_ptr (v: GSL_VECTOR_SHORT_STRUCT_API; i: INTEGER): POINTER
 		do
 			Result := c_gsl_vector_short_const_ptr (v.item, i)
+		ensure
+			instsance_free: class
 		end
 
 feature -- Externals

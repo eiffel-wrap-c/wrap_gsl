@@ -6,8 +6,6 @@ note
 class
 	GSL_VERSION
 
-
-
 feature -- Access
 
 	gsl_version: STRING
@@ -19,8 +17,9 @@ feature -- Access
 			if l_ptr /= default_pointer then
 				create Result.make_from_c (l_ptr)
 			end
+		ensure
+			instsance_free: class
 		end
-
 
 feature -- External
 

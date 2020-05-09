@@ -1,6 +1,5 @@
 note
 	description: "Summary description for {GSL_VECTOR_DOUBLE}."
-	author: ""
 	date: "$Date$"
 	revision: "$Revision$"
 
@@ -25,6 +24,8 @@ feature -- Access
 			valid_size: n >= 0
 		do
 			create Result.make_by_pointer (gsl_vector_alloc_api (n))
+		ensure
+			instsance_free: class
 		end
 
 end

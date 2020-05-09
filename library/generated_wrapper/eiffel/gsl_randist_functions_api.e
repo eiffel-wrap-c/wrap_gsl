@@ -12,6 +12,8 @@ feature -- Access
 	gsl_ran_bernoulli (r: GSL_RNG_STRUCT_API; p: REAL_64): INTEGER 
 		do
 			Result := c_gsl_ran_bernoulli (r.item, p)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_bernoulli_pdf (k: INTEGER; p: REAL_64): REAL_64
@@ -26,6 +28,8 @@ feature -- Access
 	gsl_ran_beta (r: GSL_RNG_STRUCT_API; a: REAL_64; b: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_beta (r.item, a, b)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_beta_pdf (x: REAL_64; a: REAL_64; b: REAL_64): REAL_64
@@ -40,16 +44,22 @@ feature -- Access
 	gsl_ran_binomial (r: GSL_RNG_STRUCT_API; p: REAL_64; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_ran_binomial (r.item, p, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_binomial_knuth (r: GSL_RNG_STRUCT_API; p: REAL_64; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_ran_binomial_knuth (r.item, p, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_binomial_tpe (r: GSL_RNG_STRUCT_API; p: REAL_64; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_ran_binomial_tpe (r.item, p, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_binomial_pdf (k: INTEGER; p: REAL_64; n: INTEGER): REAL_64
@@ -64,6 +74,8 @@ feature -- Access
 	gsl_ran_exponential (r: GSL_RNG_STRUCT_API; mu: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_exponential (r.item, mu)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_exponential_pdf (x: REAL_64; mu: REAL_64): REAL_64
@@ -78,6 +90,8 @@ feature -- Access
 	gsl_ran_exppow (r: GSL_RNG_STRUCT_API; a: REAL_64; b: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_exppow (r.item, a, b)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_exppow_pdf (x: REAL_64; a: REAL_64; b: REAL_64): REAL_64
@@ -92,6 +106,8 @@ feature -- Access
 	gsl_ran_cauchy (r: GSL_RNG_STRUCT_API; a: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_cauchy (r.item, a)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_cauchy_pdf (x: REAL_64; a: REAL_64): REAL_64
@@ -106,6 +122,8 @@ feature -- Access
 	gsl_ran_chisq (r: GSL_RNG_STRUCT_API; nu: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_chisq (r.item, nu)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_chisq_pdf (x: REAL_64; nu: REAL_64): REAL_64
@@ -120,21 +138,29 @@ feature -- Access
 	gsl_ran_dirichlet (r: GSL_RNG_STRUCT_API; k: INTEGER; alpha: MANAGED_POINTER; theta: MANAGED_POINTER) 
 		do
 			c_gsl_ran_dirichlet (r.item, k, alpha.item, theta.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_dirichlet_pdf (k: INTEGER; alpha: MANAGED_POINTER; theta: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_ran_dirichlet_pdf (k, alpha.item, theta.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_dirichlet_lnpdf (k: INTEGER; alpha: MANAGED_POINTER; theta: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_ran_dirichlet_lnpdf (k, alpha.item, theta.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_erlang (r: GSL_RNG_STRUCT_API; a: REAL_64; n: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_erlang (r.item, a, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_erlang_pdf (x: REAL_64; a: REAL_64; n: REAL_64): REAL_64
@@ -149,6 +175,8 @@ feature -- Access
 	gsl_ran_fdist (r: GSL_RNG_STRUCT_API; nu1: REAL_64; nu2: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_fdist (r.item, nu1, nu2)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_fdist_pdf (x: REAL_64; nu1: REAL_64; nu2: REAL_64): REAL_64
@@ -163,6 +191,8 @@ feature -- Access
 	gsl_ran_flat (r: GSL_RNG_STRUCT_API; a: REAL_64; b: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_flat (r.item, a, b)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_flat_pdf (x: REAL_64; a: REAL_64; b: REAL_64): REAL_64
@@ -177,11 +207,15 @@ feature -- Access
 	gsl_ran_gamma (r: GSL_RNG_STRUCT_API; a: REAL_64; b: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_gamma (r.item, a, b)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_gamma_int (r: GSL_RNG_STRUCT_API; a: INTEGER): REAL_64 
 		do
 			Result := c_gsl_ran_gamma_int (r.item, a)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_gamma_pdf (x: REAL_64; a: REAL_64; b: REAL_64): REAL_64
@@ -196,26 +230,36 @@ feature -- Access
 	gsl_ran_gamma_mt (r: GSL_RNG_STRUCT_API; a: REAL_64; b: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_gamma_mt (r.item, a, b)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_gamma_knuth (r: GSL_RNG_STRUCT_API; a: REAL_64; b: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_gamma_knuth (r.item, a, b)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_gaussian (r: GSL_RNG_STRUCT_API; sigma: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_gaussian (r.item, sigma)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_gaussian_ratio_method (r: GSL_RNG_STRUCT_API; sigma: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_gaussian_ratio_method (r.item, sigma)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_gaussian_ziggurat (r: GSL_RNG_STRUCT_API; sigma: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_gaussian_ziggurat (r.item, sigma)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_gaussian_pdf (x: REAL_64; sigma: REAL_64): REAL_64
@@ -230,11 +274,15 @@ feature -- Access
 	gsl_ran_ugaussian (r: GSL_RNG_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_ran_ugaussian (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_ugaussian_ratio_method (r: GSL_RNG_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_ran_ugaussian_ratio_method (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_ugaussian_pdf (x: REAL_64): REAL_64
@@ -249,6 +297,8 @@ feature -- Access
 	gsl_ran_gaussian_tail (r: GSL_RNG_STRUCT_API; a: REAL_64; sigma: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_gaussian_tail (r.item, a, sigma)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_gaussian_tail_pdf (x: REAL_64; a: REAL_64; sigma: REAL_64): REAL_64
@@ -263,6 +313,8 @@ feature -- Access
 	gsl_ran_ugaussian_tail (r: GSL_RNG_STRUCT_API; a: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_ugaussian_tail (r.item, a)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_ugaussian_tail_pdf (x: REAL_64; a: REAL_64): REAL_64
@@ -277,6 +329,8 @@ feature -- Access
 	gsl_ran_bivariate_gaussian (r: GSL_RNG_STRUCT_API; sigma_x: REAL_64; sigma_y: REAL_64; rho: REAL_64; x: POINTER; y: POINTER) 
 		do
 			c_gsl_ran_bivariate_gaussian (r.item, sigma_x, sigma_y, rho, x, y)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_bivariate_gaussian_pdf (x: REAL_64; y: REAL_64; sigma_x: REAL_64; sigma_y: REAL_64; rho: REAL_64): REAL_64
@@ -291,46 +345,64 @@ feature -- Access
 	gsl_ran_multivariate_gaussian (r: GSL_RNG_STRUCT_API; mu: GSL_VECTOR_STRUCT_API; l: GSL_MATRIX_STRUCT_API; a_result: GSL_VECTOR_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_ran_multivariate_gaussian (r.item, mu.item, l.item, a_result.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_multivariate_gaussian_log_pdf (x: GSL_VECTOR_STRUCT_API; mu: GSL_VECTOR_STRUCT_API; l: GSL_MATRIX_STRUCT_API; a_result: POINTER; work: GSL_VECTOR_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_ran_multivariate_gaussian_log_pdf (x.item, mu.item, l.item, a_result, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_multivariate_gaussian_pdf (x: GSL_VECTOR_STRUCT_API; mu: GSL_VECTOR_STRUCT_API; l: GSL_MATRIX_STRUCT_API; a_result: POINTER; work: GSL_VECTOR_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_ran_multivariate_gaussian_pdf (x.item, mu.item, l.item, a_result, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_multivariate_gaussian_mean (x: GSL_MATRIX_STRUCT_API; mu_hat: GSL_VECTOR_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_ran_multivariate_gaussian_mean (x.item, mu_hat.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_multivariate_gaussian_vcov (x: GSL_MATRIX_STRUCT_API; sigma_hat: GSL_MATRIX_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_ran_multivariate_gaussian_vcov (x.item, sigma_hat.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_wishart (r: GSL_RNG_STRUCT_API; df: REAL_64; l: GSL_MATRIX_STRUCT_API; a_result: GSL_MATRIX_STRUCT_API; work: GSL_MATRIX_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_ran_wishart (r.item, df, l.item, a_result.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_wishart_log_pdf (x: GSL_MATRIX_STRUCT_API; l_x: GSL_MATRIX_STRUCT_API; df: REAL_64; l: GSL_MATRIX_STRUCT_API; a_result: POINTER; work: GSL_MATRIX_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_ran_wishart_log_pdf (x.item, l_x.item, df, l.item, a_result, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_wishart_pdf (x: GSL_MATRIX_STRUCT_API; l_x: GSL_MATRIX_STRUCT_API; df: REAL_64; l: GSL_MATRIX_STRUCT_API; a_result: POINTER; work: GSL_MATRIX_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_ran_wishart_pdf (x.item, l_x.item, df, l.item, a_result, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_landau (r: GSL_RNG_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_ran_landau (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_landau_pdf (x: REAL_64): REAL_64
@@ -345,6 +417,8 @@ feature -- Access
 	gsl_ran_geometric (r: GSL_RNG_STRUCT_API; p: REAL_64): INTEGER 
 		do
 			Result := c_gsl_ran_geometric (r.item, p)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_geometric_pdf (k: INTEGER; p: REAL_64): REAL_64
@@ -359,6 +433,8 @@ feature -- Access
 	gsl_ran_hypergeometric (r: GSL_RNG_STRUCT_API; n1: INTEGER; n2: INTEGER; t: INTEGER): INTEGER 
 		do
 			Result := c_gsl_ran_hypergeometric (r.item, n1, n2, t)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_hypergeometric_pdf (k: INTEGER; n1: INTEGER; n2: INTEGER; t: INTEGER): REAL_64
@@ -373,6 +449,8 @@ feature -- Access
 	gsl_ran_gumbel1 (r: GSL_RNG_STRUCT_API; a: REAL_64; b: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_gumbel1 (r.item, a, b)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_gumbel1_pdf (x: REAL_64; a: REAL_64; b: REAL_64): REAL_64
@@ -387,6 +465,8 @@ feature -- Access
 	gsl_ran_gumbel2 (r: GSL_RNG_STRUCT_API; a: REAL_64; b: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_gumbel2 (r.item, a, b)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_gumbel2_pdf (x: REAL_64; a: REAL_64; b: REAL_64): REAL_64
@@ -401,6 +481,8 @@ feature -- Access
 	gsl_ran_logistic (r: GSL_RNG_STRUCT_API; a: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_logistic (r.item, a)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_logistic_pdf (x: REAL_64; a: REAL_64): REAL_64
@@ -415,6 +497,8 @@ feature -- Access
 	gsl_ran_lognormal (r: GSL_RNG_STRUCT_API; zeta: REAL_64; sigma: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_lognormal (r.item, zeta, sigma)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_lognormal_pdf (x: REAL_64; zeta: REAL_64; sigma: REAL_64): REAL_64
@@ -429,6 +513,8 @@ feature -- Access
 	gsl_ran_logarithmic (r: GSL_RNG_STRUCT_API; p: REAL_64): INTEGER 
 		do
 			Result := c_gsl_ran_logarithmic (r.item, p)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_logarithmic_pdf (k: INTEGER; p: REAL_64): REAL_64
@@ -443,21 +529,29 @@ feature -- Access
 	gsl_ran_multinomial (r: GSL_RNG_STRUCT_API; k: INTEGER; n: INTEGER; p: MANAGED_POINTER; n_1: MANAGED_POINTER) 
 		do
 			c_gsl_ran_multinomial (r.item, k, n, p.item, n_1.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_multinomial_pdf (k: INTEGER; p: MANAGED_POINTER; n: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_ran_multinomial_pdf (k, p.item, n.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_multinomial_lnpdf (k: INTEGER; p: MANAGED_POINTER; n: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_ran_multinomial_lnpdf (k, p.item, n.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_negative_binomial (r: GSL_RNG_STRUCT_API; p: REAL_64; n: REAL_64): INTEGER 
 		do
 			Result := c_gsl_ran_negative_binomial (r.item, p, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_negative_binomial_pdf (k: INTEGER; p: REAL_64; n: REAL_64): REAL_64
@@ -472,6 +566,8 @@ feature -- Access
 	gsl_ran_pascal (r: GSL_RNG_STRUCT_API; p: REAL_64; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_ran_pascal (r.item, p, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_pascal_pdf (k: INTEGER; p: REAL_64; n: INTEGER): REAL_64
@@ -486,6 +582,8 @@ feature -- Access
 	gsl_ran_pareto (r: GSL_RNG_STRUCT_API; a: REAL_64; b: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_pareto (r.item, a, b)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_pareto_pdf (x: REAL_64; a: REAL_64; b: REAL_64): REAL_64
@@ -500,11 +598,15 @@ feature -- Access
 	gsl_ran_poisson (r: GSL_RNG_STRUCT_API; mu: REAL_64): INTEGER 
 		do
 			Result := c_gsl_ran_poisson (r.item, mu)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_poisson_array (r: GSL_RNG_STRUCT_API; n: INTEGER; array: MANAGED_POINTER; mu: REAL_64) 
 		do
 			c_gsl_ran_poisson_array (r.item, n, array.item, mu)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_poisson_pdf (k: INTEGER; mu: REAL_64): REAL_64
@@ -519,6 +621,8 @@ feature -- Access
 	gsl_ran_rayleigh (r: GSL_RNG_STRUCT_API; sigma: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_rayleigh (r.item, sigma)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_rayleigh_pdf (x: REAL_64; sigma: REAL_64): REAL_64
@@ -533,6 +637,8 @@ feature -- Access
 	gsl_ran_rayleigh_tail (r: GSL_RNG_STRUCT_API; a: REAL_64; sigma: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_rayleigh_tail (r.item, a, sigma)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_rayleigh_tail_pdf (x: REAL_64; a: REAL_64; sigma: REAL_64): REAL_64
@@ -547,6 +653,8 @@ feature -- Access
 	gsl_ran_tdist (r: GSL_RNG_STRUCT_API; nu: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_tdist (r.item, nu)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_tdist_pdf (x: REAL_64; nu: REAL_64): REAL_64
@@ -561,6 +669,8 @@ feature -- Access
 	gsl_ran_laplace (r: GSL_RNG_STRUCT_API; a: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_laplace (r.item, a)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_laplace_pdf (x: REAL_64; a: REAL_64): REAL_64
@@ -575,16 +685,22 @@ feature -- Access
 	gsl_ran_levy (r: GSL_RNG_STRUCT_API; c: REAL_64; alpha: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_levy (r.item, c, alpha)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_levy_skew (r: GSL_RNG_STRUCT_API; c: REAL_64; alpha: REAL_64; beta: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_levy_skew (r.item, c, alpha, beta)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_weibull (r: GSL_RNG_STRUCT_API; a: REAL_64; b: REAL_64): REAL_64 
 		do
 			Result := c_gsl_ran_weibull (r.item, a, b)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_weibull_pdf (x: REAL_64; a: REAL_64; b: REAL_64): REAL_64
@@ -599,36 +715,50 @@ feature -- Access
 	gsl_ran_dir_2d (r: GSL_RNG_STRUCT_API; x: POINTER; y: POINTER) 
 		do
 			c_gsl_ran_dir_2d (r.item, x, y)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_dir_2d_trig_method (r: GSL_RNG_STRUCT_API; x: POINTER; y: POINTER) 
 		do
 			c_gsl_ran_dir_2d_trig_method (r.item, x, y)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_dir_3d (r: GSL_RNG_STRUCT_API; x: POINTER; y: POINTER; z: POINTER) 
 		do
 			c_gsl_ran_dir_3d (r.item, x, y, z)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_dir_nd (r: GSL_RNG_STRUCT_API; n: INTEGER; x: POINTER) 
 		do
 			c_gsl_ran_dir_nd (r.item, n, x)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_shuffle (r: GSL_RNG_STRUCT_API; base: POINTER; nmembm: INTEGER; size: INTEGER) 
 		do
 			c_gsl_ran_shuffle (r.item, base, nmembm, size)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_choose (r: GSL_RNG_STRUCT_API; dest: POINTER; k: INTEGER; src: POINTER; n: INTEGER; size: INTEGER): INTEGER 
 		do
 			Result := c_gsl_ran_choose (r.item, dest, k, src, n, size)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_sample (r: GSL_RNG_STRUCT_API; dest: POINTER; k: INTEGER; src: POINTER; n: INTEGER; size: INTEGER) 
 		do
 			c_gsl_ran_sample (r.item, dest, k, src, n, size)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_discrete_preproc (k: INTEGER; p: POINTER): detachable GSL_RAN_DISCRETE_T_STRUCT_API 
@@ -637,21 +767,29 @@ feature -- Access
 				create Result.make_by_pointer ( l_ptr )
 			end
 
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_discrete_free (g: GSL_RAN_DISCRETE_T_STRUCT_API) 
 		do
 			c_gsl_ran_discrete_free (g.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_discrete (r: GSL_RNG_STRUCT_API; g: GSL_RAN_DISCRETE_T_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_ran_discrete (r.item, g.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_ran_discrete_pdf (k: INTEGER; g: GSL_RAN_DISCRETE_T_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_ran_discrete_pdf (k, g.item)
+		ensure
+			instance_free: class
 		end
 
 feature -- Externals

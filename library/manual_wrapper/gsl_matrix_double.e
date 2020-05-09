@@ -24,6 +24,8 @@ feature -- Access
 			valid_values: n1 >= 0 and n2 >= 0
 		do
 			create Result.make_by_pointer (gsl_matrix_alloc_api (n1, n2))
+		ensure
+			instance_free: class
 		end
 
 end

@@ -32,13 +32,9 @@ feature {NONE} -- Initialization
 			xi, yi: REAL_64
 			x, y: ARRAY [REAL_64]
 			i: INTEGER
-			gsl_inter: GSL_INTERPOLATION
-			gsl_spline: GSL_SPLINE_FUNCTIONS_API
+--			gsl_spline: GSL_SPLINE_FUNCTIONS_API
 			res: INTEGER
 		do
-			create gsl_inter
-			create gsl_spline
-
 			create y.make_filled (0.0, 1, 10)
 			create x.make_filled (0.0, 1, 10)
   			print ("#M0,s=17%N")
@@ -55,12 +51,11 @@ feature {NONE} -- Initialization
 
 			print ("#m=1,S=0%N")
 
-
 			if
-				attached {GSL_INTERP_ACCEL_STRUCT_API} gsl_inter.gsl_interp_accel_alloc as acc and then
-				attached {GSL_SPLINE_STRUCT_API} gsl_spline.gsl_spline_alloc (gsl_inter.gsl_interp_cspline, 10) as spline
+				attached {GSL_INTERP_ACCEL_STRUCT_API} {GSL_INTERPOLATION}.gsl_interp_accel_alloc as acc and then
+				attached {GSL_SPLINE_STRUCT_API} {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_alloc ({GSL_INTERPOLATION}.gsl_interp_cspline, 10) as spline
 			then
-				if  gsl_spline.gsl_spline_init (spline, from_array_of_real_64 (x), from_array_of_real_64(y), 10) /= 0 then
+				if  {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_init (spline, from_array_of_real_64 (x), from_array_of_real_64(y), 10) /= 0 then
 					print ("Error in gsl_spline_init%N")
 					{EXCEPTIONS}.die (1)
 				end
@@ -70,12 +65,12 @@ feature {NONE} -- Initialization
 				until
 					xi >= x [10]
 				loop
-					yi := gsl_spline.gsl_spline_eval (spline, xi, acc)
+					yi := {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_eval (spline, xi, acc)
 					print (xi.out + " " + yi.out+ "%N")
 					xi := xi + 0.01
 				end
-				gsl_spline.gsl_spline_free (spline)
-				gsl_inter.gsl_interp_accel_free (acc)
+				{GSL_SPLINE_FUNCTIONS_API}.gsl_spline_free (spline)
+				{GSL_INTERPOLATION}.gsl_interp_accel_free (acc)
 			end
 		end
 

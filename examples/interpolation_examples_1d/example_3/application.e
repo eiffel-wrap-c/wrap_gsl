@@ -31,15 +31,11 @@ feature {NONE} -- Initialization
 			xi, yi, yi_cubic, yi_akima, yi_steffen : REAL_64
 			x, y: ARRAY [REAL_64]
 			i: INTEGER
-			gsl_inter: GSL_INTERPOLATION
-			gsl_spline: GSL_SPLINE_FUNCTIONS_API
+--			gsl_spline: GSL_SPLINE_FUNCTIONS_API
 			res: INTEGER
 			n: INTEGER
 		do
 			n := 9
-
-			create gsl_inter
-			create gsl_spline
 
 				-- this dataset is taken from  J. M. Hyman,
 				-- Accurate Monotonicity preserving cubic interpolation,SIAM J. Sci. Stat. Comput. 4, 4, 1983.
@@ -47,20 +43,20 @@ feature {NONE} -- Initialization
             y := {ARRAY [REAL_64]} << 0.0, 2.76429e-5, 4.37498e-2, 0.169183, 0.469428, 0.943740, 0.998636, 0.999919, 0.999994 >>
 
 			if
-				attached {GSL_INTERP_ACCEL_STRUCT_API} gsl_inter.gsl_interp_accel_alloc as acc and then
-				attached {GSL_SPLINE_STRUCT_API} gsl_spline.gsl_spline_alloc (gsl_inter.gsl_interp_cspline, n) as spline_cubic and then
-				attached {GSL_SPLINE_STRUCT_API} gsl_spline.gsl_spline_alloc (gsl_inter.gsl_interp_akima, n) as spline_akima and then
-				attached {GSL_SPLINE_STRUCT_API} gsl_spline.gsl_spline_alloc (gsl_inter.gsl_interp_steffen, n) as spline_steffen
+				attached {GSL_INTERP_ACCEL_STRUCT_API} {GSL_INTERPOLATION}.gsl_interp_accel_alloc as acc and then
+				attached {GSL_SPLINE_STRUCT_API} {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_alloc ({GSL_INTERPOLATION}.gsl_interp_cspline, n) as spline_cubic and then
+				attached {GSL_SPLINE_STRUCT_API} {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_alloc ({GSL_INTERPOLATION}.gsl_interp_akima, n) as spline_akima and then
+				attached {GSL_SPLINE_STRUCT_API} {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_alloc ({GSL_INTERPOLATION}.gsl_interp_steffen, n) as spline_steffen
 			then
-				if gsl_spline.gsl_spline_init (spline_cubic, {MANAGED_POINTER_HELPER}.from_array_of_real_64 (x), {MANAGED_POINTER_HELPER}.from_array_of_real_64 (y), n) /= 0 then
+				if {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_init (spline_cubic, {MANAGED_POINTER_HELPER}.from_array_of_real_64 (x), {MANAGED_POINTER_HELPER}.from_array_of_real_64 (y), n) /= 0 then
 					print ("Error in gsl_spline_init with spline_cubic %N")
 					{EXCEPTIONS}.die (1)
 				end
-				if gsl_spline.gsl_spline_init (spline_akima, {MANAGED_POINTER_HELPER}.from_array_of_real_64 (x), {MANAGED_POINTER_HELPER}.from_array_of_real_64 (y), n) /= 0 then
+				if {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_init (spline_akima, {MANAGED_POINTER_HELPER}.from_array_of_real_64 (x), {MANAGED_POINTER_HELPER}.from_array_of_real_64 (y), n) /= 0 then
 					print ("Error in gsl_spline_init with spline_akima %N")
 					{EXCEPTIONS}.die (1)
 				end
-				if gsl_spline.gsl_spline_init (spline_steffen, {MANAGED_POINTER_HELPER}.from_array_of_real_64 (x), {MANAGED_POINTER_HELPER}.from_array_of_real_64(y), n) /= 0 then
+				if {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_init (spline_steffen, {MANAGED_POINTER_HELPER}.from_array_of_real_64 (x), {MANAGED_POINTER_HELPER}.from_array_of_real_64(y), n) /= 0 then
 					print ("Error in gsl_spline_init with spline_steffen %N")
 					{EXCEPTIONS}.die (1)
 				end
@@ -81,16 +77,16 @@ feature {NONE} -- Initialization
 					i > 100
 				loop
 					xi := (1 - (i-1) / 100.0) * x[1] + ((i-1) / 100.0) * x[n]
-					yi_cubic := gsl_spline.gsl_spline_eval (spline_cubic, xi, acc)
-					yi_akima := gsl_spline.gsl_spline_eval (spline_akima, xi, acc)
-					yi_steffen := gsl_spline.gsl_spline_eval (spline_steffen, xi, acc)
+					yi_cubic := {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_eval (spline_cubic, xi, acc)
+					yi_akima := {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_eval (spline_akima, xi, acc)
+					yi_steffen := {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_eval (spline_steffen, xi, acc)
 					 print (xi.out + " " + yi_cubic.out + " " + yi_akima.out + " " +  yi_steffen.out + "%N");
 					i := i + 1
 				end
-				gsl_spline.gsl_spline_free (spline_cubic)
-				gsl_spline.gsl_spline_free (spline_akima)
-				gsl_spline.gsl_spline_free (spline_steffen)
-				gsl_inter.gsl_interp_accel_free (acc)
+				{GSL_SPLINE_FUNCTIONS_API}.gsl_spline_free (spline_cubic)
+				{GSL_SPLINE_FUNCTIONS_API}.gsl_spline_free (spline_akima)
+				{GSL_SPLINE_FUNCTIONS_API}.gsl_spline_free (spline_steffen)
+				{GSL_INTERPOLATION}.gsl_interp_accel_free (acc)
 			end
 		end
 end

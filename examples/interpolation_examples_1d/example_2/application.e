@@ -31,24 +31,19 @@ feature {NONE} -- Initialization
 			xi, yi: REAL_64
 			x, y: ARRAY [REAL_64]
 			i: INTEGER
-			gsl_inter: GSL_INTERPOLATION
-			gsl_spline: GSL_SPLINE_FUNCTIONS_API
 			res: INTEGER
 			n: INTEGER
 		do
 			n := 4
-
-			create gsl_inter
-			create gsl_spline
 
 			x:= {ARRAY [REAL_64]}<<0.00, 0.10,  0.27,  0.30>>
 			Y:= {ARRAY [REAL_64]}<<0.15, 0.70, -0.10,  0.15>>
 				-- y[1] = y[4] for periodic data
 
 			if
-				attached {GSL_INTERP_ACCEL_STRUCT_API} gsl_inter.gsl_interp_accel_alloc as acc and then
-				attached {GSL_INTERP_TYPE_STRUCT_API} gsl_inter.gsl_interp_cspline_periodic as t and then
-				attached {GSL_SPLINE_STRUCT_API} gsl_spline.gsl_spline_alloc (t, 4) as spline
+				attached {GSL_INTERP_ACCEL_STRUCT_API} {GSL_INTERPOLATION}.gsl_interp_accel_alloc as acc and then
+				attached {GSL_INTERP_TYPE_STRUCT_API} {GSL_INTERPOLATION}.gsl_interp_cspline_periodic as t and then
+				attached {GSL_SPLINE_STRUCT_API} {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_alloc (t, 4) as spline
 			then
 				print ("#m=0,S=5%N")
 				from
@@ -60,7 +55,7 @@ feature {NONE} -- Initialization
 					i := i + 1
 				end
 				print ("#m=1,S=0%N")
-				if gsl_spline.gsl_spline_init (spline, from_array_of_real_64(x), from_array_of_real_64 (y), n) /= 0 then
+				if {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_init (spline, from_array_of_real_64(x), from_array_of_real_64 (y), n) /= 0 then
 					print ("Error in gsl_spline_init%N")
 					{EXCEPTIONS}.die (1)
 				end
@@ -70,12 +65,12 @@ feature {NONE} -- Initialization
 					i > 100
 				loop
 					xi := (1 - (i-1) / 100.0) * x[1] + ((i-1) / 100.0) * x[n]
-					yi := gsl_spline.gsl_spline_eval (spline, xi, acc)
+					yi := {GSL_SPLINE_FUNCTIONS_API}.gsl_spline_eval (spline, xi, acc)
 					print (xi.out + " " + yi.out + "%N")
 					i := i + 1
 				end
-				gsl_spline.gsl_spline_free (spline)
-				gsl_inter.gsl_interp_accel_free (acc)
+				{GSL_SPLINE_FUNCTIONS_API}.gsl_spline_free (spline)
+				{GSL_INTERPOLATION}.gsl_interp_accel_free (acc)
 			end
 		end
 

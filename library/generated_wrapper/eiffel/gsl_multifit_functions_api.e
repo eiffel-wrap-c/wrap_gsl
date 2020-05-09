@@ -21,171 +21,239 @@ feature -- Access
 	gsl_multifit_linear_free (w: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API) 
 		do
 			c_gsl_multifit_linear_free (w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear (x: GSL_MATRIX_STRUCT_API; y: GSL_VECTOR_STRUCT_API; c: GSL_VECTOR_STRUCT_API; cov: GSL_MATRIX_STRUCT_API; chisq: POINTER; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear (x.item, y.item, c.item, cov.item, chisq, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_tsvd (x: GSL_MATRIX_STRUCT_API; y: GSL_VECTOR_STRUCT_API; tol: REAL_64; c: GSL_VECTOR_STRUCT_API; cov: GSL_MATRIX_STRUCT_API; chisq: POINTER; rank: POINTER; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_tsvd (x.item, y.item, tol, c.item, cov.item, chisq, rank, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_svd (x: GSL_MATRIX_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_svd (x.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_bsvd (x: GSL_MATRIX_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_bsvd (x.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_rank (tol: REAL_64; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_rank (tol, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_solve (lambda: REAL_64; x: GSL_MATRIX_STRUCT_API; y: GSL_VECTOR_STRUCT_API; c: GSL_VECTOR_STRUCT_API; rnorm: POINTER; snorm: POINTER; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_solve (lambda, x.item, y.item, c.item, rnorm, snorm, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_apply_w (x: GSL_MATRIX_STRUCT_API; w: GSL_VECTOR_STRUCT_API; y: GSL_VECTOR_STRUCT_API; wx: GSL_MATRIX_STRUCT_API; wy: GSL_VECTOR_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_apply_w (x.item, w.item, y.item, wx.item, wy.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_stdform1 (l: GSL_VECTOR_STRUCT_API; x: GSL_MATRIX_STRUCT_API; y: GSL_VECTOR_STRUCT_API; xs: GSL_MATRIX_STRUCT_API; ys: GSL_VECTOR_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_stdform1 (l.item, x.item, y.item, xs.item, ys.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_wstdform1 (l: GSL_VECTOR_STRUCT_API; x: GSL_MATRIX_STRUCT_API; w: GSL_VECTOR_STRUCT_API; y: GSL_VECTOR_STRUCT_API; xs: GSL_MATRIX_STRUCT_API; ys: GSL_VECTOR_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_wstdform1 (l.item, x.item, w.item, y.item, xs.item, ys.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_l_decomp (l: GSL_MATRIX_STRUCT_API; tau: GSL_VECTOR_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_l_decomp (l.item, tau.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_stdform2 (lqr: GSL_MATRIX_STRUCT_API; ltau: GSL_VECTOR_STRUCT_API; x: GSL_MATRIX_STRUCT_API; y: GSL_VECTOR_STRUCT_API; xs: GSL_MATRIX_STRUCT_API; ys: GSL_VECTOR_STRUCT_API; m: GSL_MATRIX_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_stdform2 (lqr.item, ltau.item, x.item, y.item, xs.item, ys.item, m.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_wstdform2 (lqr: GSL_MATRIX_STRUCT_API; ltau: GSL_VECTOR_STRUCT_API; x: GSL_MATRIX_STRUCT_API; w: GSL_VECTOR_STRUCT_API; y: GSL_VECTOR_STRUCT_API; xs: GSL_MATRIX_STRUCT_API; ys: GSL_VECTOR_STRUCT_API; m: GSL_MATRIX_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_wstdform2 (lqr.item, ltau.item, x.item, w.item, y.item, xs.item, ys.item, m.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_genform1 (l: GSL_VECTOR_STRUCT_API; cs: GSL_VECTOR_STRUCT_API; c: GSL_VECTOR_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_genform1 (l.item, cs.item, c.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_genform2 (lqr: GSL_MATRIX_STRUCT_API; ltau: GSL_VECTOR_STRUCT_API; x: GSL_MATRIX_STRUCT_API; y: GSL_VECTOR_STRUCT_API; cs: GSL_VECTOR_STRUCT_API; m: GSL_MATRIX_STRUCT_API; c: GSL_VECTOR_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_genform2 (lqr.item, ltau.item, x.item, y.item, cs.item, m.item, c.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_wgenform2 (lqr: GSL_MATRIX_STRUCT_API; ltau: GSL_VECTOR_STRUCT_API; x: GSL_MATRIX_STRUCT_API; w: GSL_VECTOR_STRUCT_API; y: GSL_VECTOR_STRUCT_API; cs: GSL_VECTOR_STRUCT_API; m: GSL_MATRIX_STRUCT_API; c: GSL_VECTOR_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_wgenform2 (lqr.item, ltau.item, x.item, w.item, y.item, cs.item, m.item, c.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_lreg (smin: REAL_64; smax: REAL_64; reg_param: GSL_VECTOR_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_lreg (smin, smax, reg_param.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_lcurve (y: GSL_VECTOR_STRUCT_API; reg_param: GSL_VECTOR_STRUCT_API; rho: GSL_VECTOR_STRUCT_API; eta: GSL_VECTOR_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_lcurve (y.item, reg_param.item, rho.item, eta.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_lcorner (rho: GSL_VECTOR_STRUCT_API; eta: GSL_VECTOR_STRUCT_API; idx: POINTER): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_lcorner (rho.item, eta.item, idx)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_lcorner2 (reg_param: GSL_VECTOR_STRUCT_API; eta: GSL_VECTOR_STRUCT_API; idx: POINTER): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_lcorner2 (reg_param.item, eta.item, idx)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_lk (p: INTEGER; k: INTEGER; l: GSL_MATRIX_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_lk (p, k, l.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_lsobolev (p: INTEGER; kmax: INTEGER; alpha: GSL_VECTOR_STRUCT_API; l: GSL_MATRIX_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_lsobolev (p, kmax, alpha.item, l.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_wlinear (x: GSL_MATRIX_STRUCT_API; w: GSL_VECTOR_STRUCT_API; y: GSL_VECTOR_STRUCT_API; c: GSL_VECTOR_STRUCT_API; cov: GSL_MATRIX_STRUCT_API; chisq: POINTER; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_wlinear (x.item, w.item, y.item, c.item, cov.item, chisq, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_wlinear_tsvd (x: GSL_MATRIX_STRUCT_API; w: GSL_VECTOR_STRUCT_API; y: GSL_VECTOR_STRUCT_API; tol: REAL_64; c: GSL_VECTOR_STRUCT_API; cov: GSL_MATRIX_STRUCT_API; chisq: POINTER; rank: POINTER; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_wlinear_tsvd (x.item, w.item, y.item, tol, c.item, cov.item, chisq, rank, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_wlinear_svd (x: GSL_MATRIX_STRUCT_API; w: GSL_VECTOR_STRUCT_API; y: GSL_VECTOR_STRUCT_API; tol: REAL_64; rank: POINTER; c: GSL_VECTOR_STRUCT_API; cov: GSL_MATRIX_STRUCT_API; chisq: POINTER; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_wlinear_svd (x.item, w.item, y.item, tol, rank, c.item, cov.item, chisq, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_wlinear_usvd (x: GSL_MATRIX_STRUCT_API; w: GSL_VECTOR_STRUCT_API; y: GSL_VECTOR_STRUCT_API; tol: REAL_64; rank: POINTER; c: GSL_VECTOR_STRUCT_API; cov: GSL_MATRIX_STRUCT_API; chisq: POINTER; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_wlinear_usvd (x.item, w.item, y.item, tol, rank, c.item, cov.item, chisq, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_est (x: GSL_VECTOR_STRUCT_API; c: GSL_VECTOR_STRUCT_API; cov: GSL_MATRIX_STRUCT_API; y: POINTER; y_err: POINTER): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_est (x.item, c.item, cov.item, y, y_err)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_rcond (w: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_multifit_linear_rcond (w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_residuals (x: GSL_MATRIX_STRUCT_API; y: GSL_VECTOR_STRUCT_API; c: GSL_VECTOR_STRUCT_API; r: GSL_VECTOR_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_residuals (x.item, y.item, c.item, r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_gcv_init (y: GSL_VECTOR_STRUCT_API; reg_param: GSL_VECTOR_STRUCT_API; uty: GSL_VECTOR_STRUCT_API; delta0: POINTER; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_gcv_init (y.item, reg_param.item, uty.item, delta0, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_gcv_curve (reg_param: GSL_VECTOR_STRUCT_API; uty: GSL_VECTOR_STRUCT_API; delta0: REAL_64; g: GSL_VECTOR_STRUCT_API; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_gcv_curve (reg_param.item, uty.item, delta0, g.item, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_gcv_min (reg_param: GSL_VECTOR_STRUCT_API; uty: GSL_VECTOR_STRUCT_API; g: GSL_VECTOR_STRUCT_API; delta0: REAL_64; lambda: POINTER; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_gcv_min (reg_param.item, uty.item, g.item, delta0, lambda, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_gcv_calc (lambda: REAL_64; uty: GSL_VECTOR_STRUCT_API; delta0: REAL_64; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_multifit_linear_gcv_calc (lambda, uty.item, delta0, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_linear_gcv (y: GSL_VECTOR_STRUCT_API; reg_param: GSL_VECTOR_STRUCT_API; g: GSL_VECTOR_STRUCT_API; lambda: POINTER; g_lambda: POINTER; work: GSL_MULTIFIT_LINEAR_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_linear_gcv (y.item, reg_param.item, g.item, lambda, g_lambda, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_robust_alloc (t: GSL_MULTIFIT_ROBUST_TYPE_STRUCT_API; n: INTEGER; p: INTEGER): detachable GSL_MULTIFIT_ROBUST_WORKSPACE_STRUCT_API 
@@ -194,26 +262,36 @@ feature -- Access
 				create Result.make_by_pointer ( l_ptr )
 			end
 
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_robust_free (w: GSL_MULTIFIT_ROBUST_WORKSPACE_STRUCT_API) 
 		do
 			c_gsl_multifit_robust_free (w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_robust_tune (tune: REAL_64; w: GSL_MULTIFIT_ROBUST_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_robust_tune (tune, w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_robust_maxiter (maxiter: INTEGER; w: GSL_MULTIFIT_ROBUST_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_robust_maxiter (maxiter, w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_robust_name (w: GSL_MULTIFIT_ROBUST_WORKSPACE_STRUCT_API): POINTER 
 		do
 			Result := c_gsl_multifit_robust_name (w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_robust_statistics (w: GSL_MULTIFIT_ROBUST_WORKSPACE_STRUCT_API): detachable GSL_MULTIFIT_ROBUST_STATS_STRUCT_API 
@@ -222,26 +300,36 @@ feature -- Access
 				create Result.make_by_pointer ( l_ptr )
 			end
 
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_robust_weights (r: GSL_VECTOR_STRUCT_API; wts: GSL_VECTOR_STRUCT_API; w: GSL_MULTIFIT_ROBUST_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_robust_weights (r.item, wts.item, w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_robust (x: GSL_MATRIX_STRUCT_API; y: GSL_VECTOR_STRUCT_API; c: GSL_VECTOR_STRUCT_API; cov: GSL_MATRIX_STRUCT_API; w: GSL_MULTIFIT_ROBUST_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_robust (x.item, y.item, c.item, cov.item, w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_robust_est (x: GSL_VECTOR_STRUCT_API; c: GSL_VECTOR_STRUCT_API; cov: GSL_MATRIX_STRUCT_API; y: POINTER; y_err: POINTER): INTEGER 
 		do
 			Result := c_gsl_multifit_robust_est (x.item, c.item, cov.item, y, y_err)
+		ensure
+			instance_free: class
 		end
 
 	gsl_multifit_robust_residuals (x: GSL_MATRIX_STRUCT_API; y: GSL_VECTOR_STRUCT_API; c: GSL_VECTOR_STRUCT_API; r: GSL_VECTOR_STRUCT_API; w: GSL_MULTIFIT_ROBUST_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_multifit_robust_residuals (x.item, y.item, c.item, r.item, w.item)
+		ensure
+			instance_free: class
 		end
 
 feature -- Externals
