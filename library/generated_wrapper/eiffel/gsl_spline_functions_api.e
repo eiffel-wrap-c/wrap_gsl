@@ -15,66 +15,92 @@ feature -- Access
 				create Result.make_by_pointer ( l_ptr )
 			end
 
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_init (spline: GSL_SPLINE_STRUCT_API; xa: MANAGED_POINTER; ya: MANAGED_POINTER; size: INTEGER): INTEGER 
 		do
 			Result := c_gsl_spline_init (spline.item, xa.item, ya.item, size)
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_name (spline: GSL_SPLINE_STRUCT_API): POINTER 
 		do
 			Result := c_gsl_spline_name (spline.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_min_size (spline: GSL_SPLINE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_spline_min_size (spline.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_eval_e (spline: GSL_SPLINE_STRUCT_API; x: REAL_64; a: GSL_INTERP_ACCEL_STRUCT_API; y: POINTER): INTEGER 
 		do
 			Result := c_gsl_spline_eval_e (spline.item, x, a.item, y)
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_eval (spline: GSL_SPLINE_STRUCT_API; x: REAL_64; a: GSL_INTERP_ACCEL_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_spline_eval (spline.item, x, a.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_eval_deriv_e (spline: GSL_SPLINE_STRUCT_API; x: REAL_64; a: GSL_INTERP_ACCEL_STRUCT_API; y: POINTER): INTEGER 
 		do
 			Result := c_gsl_spline_eval_deriv_e (spline.item, x, a.item, y)
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_eval_deriv (spline: GSL_SPLINE_STRUCT_API; x: REAL_64; a: GSL_INTERP_ACCEL_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_spline_eval_deriv (spline.item, x, a.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_eval_deriv2_e (spline: GSL_SPLINE_STRUCT_API; x: REAL_64; a: GSL_INTERP_ACCEL_STRUCT_API; y: POINTER): INTEGER 
 		do
 			Result := c_gsl_spline_eval_deriv2_e (spline.item, x, a.item, y)
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_eval_deriv2 (spline: GSL_SPLINE_STRUCT_API; x: REAL_64; a: GSL_INTERP_ACCEL_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_spline_eval_deriv2 (spline.item, x, a.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_eval_integ_e (spline: GSL_SPLINE_STRUCT_API; a: REAL_64; b: REAL_64; acc: GSL_INTERP_ACCEL_STRUCT_API; y: POINTER): INTEGER 
 		do
 			Result := c_gsl_spline_eval_integ_e (spline.item, a, b, acc.item, y)
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_eval_integ (spline: GSL_SPLINE_STRUCT_API; a: REAL_64; b: REAL_64; acc: GSL_INTERP_ACCEL_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_spline_eval_integ (spline.item, a, b, acc.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_spline_free (spline: GSL_SPLINE_STRUCT_API) 
 		do
 			c_gsl_spline_free (spline.item)
+		ensure
+			instance_free: class
 		end
 
 feature -- Externals

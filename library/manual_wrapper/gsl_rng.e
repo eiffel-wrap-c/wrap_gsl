@@ -30,6 +30,8 @@ feature
 			eis:"name=gsl_rng_default", "src=https://www.gnu.org/software/gsl/doc/html/rng.html?highlight=gsl_rng_default_seed#c.gsl_rng_default", "protocol=uri"
 		do
 			create Result.make_by_pointer (c_gsl_rng_default)
+		ensure
+			instance_free: class
 		end
 
 

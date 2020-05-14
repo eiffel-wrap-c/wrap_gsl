@@ -12,281 +12,393 @@ feature -- Access
 	gsl_stats_long_double_mean (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_mean (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_variance (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_variance (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_sd (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_sd (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_variance_with_fixed_mean (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_variance_with_fixed_mean (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_sd_with_fixed_mean (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_sd_with_fixed_mean (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_tss (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_tss (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_tss_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_tss_m (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_absdev (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_absdev (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_skew (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_skew (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_kurtosis (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_kurtosis (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_lag1_autocorrelation (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_lag1_autocorrelation (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_covariance (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_covariance (data1.item, stride1, data2.item, stride2, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_correlation (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_correlation (data1.item, stride1, data2.item, stride2, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_spearman (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_spearman (data1.item, stride1, data2.item, stride2, n, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_variance_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_variance_m (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_sd_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_sd_m (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_absdev_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_absdev_m (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_skew_m_sd (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64; sd: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_skew_m_sd (data.item, stride, n, mean, sd)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_kurtosis_m_sd (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64; sd: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_kurtosis_m_sd (data.item, stride, n, mean, sd)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_lag1_autocorrelation_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_lag1_autocorrelation_m (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_covariance_m (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER; mean1: REAL_64; mean2: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_covariance_m (data1.item, stride1, data2.item, stride2, n, mean1, mean2)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wmean (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wmean (w.item, wstride, data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wvariance (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wvariance (w.item, wstride, data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wsd (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wsd (w.item, wstride, data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wvariance_with_fixed_mean (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wvariance_with_fixed_mean (w.item, wstride, data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wsd_with_fixed_mean (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wsd_with_fixed_mean (w.item, wstride, data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wtss (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wtss (w.item, wstride, data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wtss_m (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wtss_m (w.item, wstride, data.item, stride, n, wmean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wabsdev (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wabsdev (w.item, wstride, data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wskew (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wskew (w.item, wstride, data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wkurtosis (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wkurtosis (w.item, wstride, data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wvariance_m (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wvariance_m (w.item, wstride, data.item, stride, n, wmean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wsd_m (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wsd_m (w.item, wstride, data.item, stride, n, wmean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wabsdev_m (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wabsdev_m (w.item, wstride, data.item, stride, n, wmean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wskew_m_sd (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64; wsd: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wskew_m_sd (w.item, wstride, data.item, stride, n, wmean, wsd)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_wkurtosis_m_sd (w: MANAGED_POINTER; wstride: INTEGER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; wmean: REAL_64; wsd: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_wkurtosis_m_sd (w.item, wstride, data.item, stride, n, wmean, wsd)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_pvariance (data1: MANAGED_POINTER; stride1: INTEGER; n1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n2: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_pvariance (data1.item, stride1, n1, data2.item, stride2, n2)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_ttest (data1: MANAGED_POINTER; stride1: INTEGER; n1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n2: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_ttest (data1.item, stride1, n1, data2.item, stride2, n2)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_max (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_stats_long_double_max (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_min (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_stats_long_double_min (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_minmax (min: POINTER; max: POINTER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER) 
 		do
 			c_gsl_stats_long_double_minmax (min, max, data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_max_index (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_stats_long_double_max_index (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_min_index (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_stats_long_double_min_index (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_minmax_index (min_index: POINTER; max_index: POINTER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER) 
 		do
 			c_gsl_stats_long_double_minmax_index (min_index, max_index, data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_select (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; k: INTEGER): INTEGER 
 		do
 			Result := c_gsl_stats_long_double_select (data.item, stride, n, k)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_median_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_median_from_sorted_data (sorted_data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_median (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_median (sorted_data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_quantile_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; f: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_quantile_from_sorted_data (sorted_data.item, stride, n, f)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_trmean_from_sorted_data (trim: REAL_64; sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_trmean_from_sorted_data (trim, sorted_data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_gastwirth_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_gastwirth_from_sorted_data (sorted_data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_mad0 (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_mad0 (data.item, stride, n, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_mad (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_mad (data.item, stride, n, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_sn0_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): INTEGER 
 		do
 			Result := c_gsl_stats_long_double_sn0_from_sorted_data (sorted_data.item, stride, n, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_sn_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_sn_from_sorted_data (sorted_data.item, stride, n, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_qn0_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER; work_int: MANAGED_POINTER): INTEGER 
 		do
 			Result := c_gsl_stats_long_double_qn0_from_sorted_data (sorted_data.item, stride, n, work.item, work_int.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_long_double_qn_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER; work_int: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_stats_long_double_qn_from_sorted_data (sorted_data.item, stride, n, work.item, work_int.item)
+		ensure
+			instance_free: class
 		end
 
 feature -- Externals

@@ -14,7 +14,8 @@ feature -- Access
 			if attached c_gsl_rng_types_setup as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_alloc (t: GSL_RNG_TYPE_STRUCT_API): detachable GSL_RNG_STRUCT_API
@@ -22,12 +23,15 @@ feature -- Access
 			if attached c_gsl_rng_alloc (t.item) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_memcpy (dest: GSL_RNG_STRUCT_API; src: GSL_RNG_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_rng_memcpy (dest.item, src.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_clone (r: GSL_RNG_STRUCT_API): detachable GSL_RNG_STRUCT_API
@@ -35,57 +39,78 @@ feature -- Access
 			if attached c_gsl_rng_clone (r.item) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_free (r: GSL_RNG_STRUCT_API)
 		do
 			c_gsl_rng_free (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_set (r: GSL_RNG_STRUCT_API; seed: INTEGER)
 		do
 			c_gsl_rng_set (r.item, seed)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_max (r: GSL_RNG_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_rng_max (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_min (r: GSL_RNG_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_rng_min (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_name (r: GSL_RNG_STRUCT_API): POINTER
 		do
 			Result := c_gsl_rng_name (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_fread (stream: FILE; r: GSL_RNG_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_rng_fread (stream.file_pointer, r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_fwrite (stream: FILE; r: GSL_RNG_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_rng_fwrite (stream.file_pointer, r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_size (r: GSL_RNG_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_rng_size (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_state (r: GSL_RNG_STRUCT_API): POINTER
 		do
 			Result := c_gsl_rng_state (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_print_state (r: GSL_RNG_STRUCT_API)
 		do
 			c_gsl_rng_print_state (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_env_setup: detachable GSL_RNG_TYPE_STRUCT_API
@@ -93,27 +118,36 @@ feature -- Access
 			if attached c_gsl_rng_env_setup as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_get (r: GSL_RNG_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_rng_get (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_uniform (r: GSL_RNG_STRUCT_API): REAL_64
 		do
 			Result := c_gsl_rng_uniform (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_uniform_pos (r: GSL_RNG_STRUCT_API): REAL_64
 		do
 			Result := c_gsl_rng_uniform_pos (r.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_rng_uniform_int (r: GSL_RNG_STRUCT_API; n: INTEGER): INTEGER
 		do
 			Result := c_gsl_rng_uniform_int (r.item, n)
+		ensure
+			instance_free: class
 		end
 
 feature -- Externals

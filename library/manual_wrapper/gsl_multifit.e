@@ -22,7 +22,8 @@ feature -- Access
 			eis:"name=gsl_multifit_linear_alloc", "src=https://www.gnu.org/software/gsl/doc/html/lls.html?highlight=gsl_multifit#c.gsl_multifit_linear_alloc", "protocol=uri"
 		do
 			create Result.make_by_pointer (gsl_multifit_linear_alloc_api (n,p))
+		ensure
+			instance_free: class
 		end
-
 
 end

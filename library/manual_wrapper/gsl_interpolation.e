@@ -19,6 +19,8 @@ feature -- Access
 			eis:"name=gsl_interp_cspline", "src=https://www.gnu.org/software/gsl/doc/html/interp.html?highlight=gsl_interp_cspline#c.gsl_interp_cspline", "protocol=uri"
 		do
 			create Result.make_by_pointer (c_gsl_interp_cspline)
+		ensure
+			instance_free: class
 		end
 
 	gsl_interp_steffen:	GSL_INTERP_TYPE_STRUCT_API
@@ -26,6 +28,8 @@ feature -- Access
 			eis:"name=gsl_interp_steffen", "src=https://www.gnu.org/software/gsl/doc/html/interp.html?highlight=gsl_interp_cspline#c.gsl_interp_steffen", "protocol=uri"
 		do
 			create Result.make_by_pointer (c_gsl_interp_steffen)
+		ensure
+			instance_free: class
 		end
 
 	gsl_interp_linear:	GSL_INTERP_TYPE_STRUCT_API
@@ -33,6 +37,8 @@ feature -- Access
 			eis:"name=gsl_interp_linear", "src=https://www.gnu.org/software/gsl/doc/html/interp.html?highlight=gsl_interp_linear#c.gsl_interp_linear", "protocol=uri"
 		do
 			create Result.make_by_pointer (c_gsl_interp_linear)
+		ensure
+			instance_free: class
 		end
 
 	gsl_interp_polynomial:	GSL_INTERP_TYPE_STRUCT_API
@@ -40,6 +46,8 @@ feature -- Access
 			eis:"name=gsl_interp_polynomial", "src=https://www.gnu.org/software/gsl/doc/html/interp.html?highlight=gsl_interp_polynomial#c.gsl_interp_polynomial", "protocol=uri"
 		do
 			create Result.make_by_pointer (c_gsl_interp_polynomial)
+		ensure
+			instance_free: class
 		end
 
 	gsl_interp_cspline_periodic: GSL_INTERP_TYPE_STRUCT_API
@@ -47,6 +55,8 @@ feature -- Access
 			eis:"name=gsl_interp_cspline_periodic", "src=https://www.gnu.org/software/gsl/doc/html/interp.html?highlight=gsl_interp_cspline_periodic#c.gsl_interp_cspline_periodic", "protocol=uri"
 		do
 			create Result.make_by_pointer (c_gsl_interp_cspline_periodic)
+		ensure
+			instance_free: class
 		end
 
 	gsl_interp_akima: GSL_INTERP_TYPE_STRUCT_API
@@ -54,6 +64,8 @@ feature -- Access
 			eis:"name=gsl_interp_akima", "src=https://www.gnu.org/software/gsl/doc/html/interp.html?highlight=gsl_interp_akima#c.gsl_interp_akima", "protocol=uri"
 		do
 			create Result.make_by_pointer (c_gsl_interp_akima)
+		ensure
+			instance_free: class
 		end
 
 	gsl_interp_akima_periodic: GSL_INTERP_TYPE_STRUCT_API
@@ -61,6 +73,8 @@ feature -- Access
 			eis:"name=gsl_interp_akima_periodic", "src=https://www.gnu.org/software/gsl/doc/html/interp.html?highlight=gsl_interp_akima_periodic#c.gsl_interp_akima_periodic", "protocol=uri"
 		do
 			create Result.make_by_pointer (c_gsl_interp_akima_periodic)
+		ensure
+			instance_free: class
 		end
 
 feature -- External

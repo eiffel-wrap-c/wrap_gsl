@@ -21,66 +21,92 @@ feature -- Access
 	gsl_bspline_free (w: GSL_BSPLINE_WORKSPACE_STRUCT_API) 
 		do
 			c_gsl_bspline_free (w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_ncoeffs (w: GSL_BSPLINE_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_bspline_ncoeffs (w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_order (w: GSL_BSPLINE_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_bspline_order (w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_nbreak (w: GSL_BSPLINE_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_bspline_nbreak (w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_breakpoint (i: INTEGER; w: GSL_BSPLINE_WORKSPACE_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_bspline_breakpoint (i, w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_greville_abscissa (i: INTEGER; w: GSL_BSPLINE_WORKSPACE_STRUCT_API): REAL_64 
 		do
 			Result := c_gsl_bspline_greville_abscissa (i, w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_knots (breakpts: GSL_VECTOR_STRUCT_API; w: GSL_BSPLINE_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_bspline_knots (breakpts.item, w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_knots_uniform (a: REAL_64; b: REAL_64; w: GSL_BSPLINE_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_bspline_knots_uniform (a, b, w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_knots_greville (abscissae: GSL_VECTOR_STRUCT_API; w: GSL_BSPLINE_WORKSPACE_STRUCT_API; abserr: POINTER): INTEGER 
 		do
 			Result := c_gsl_bspline_knots_greville (abscissae.item, w.item, abserr)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_eval (x: REAL_64; b: GSL_VECTOR_STRUCT_API; w: GSL_BSPLINE_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_bspline_eval (x, b.item, w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_eval_nonzero (x: REAL_64; bk: GSL_VECTOR_STRUCT_API; istart: POINTER; iend: POINTER; w: GSL_BSPLINE_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_bspline_eval_nonzero (x, bk.item, istart, iend, w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_deriv_eval (x: REAL_64; nderiv: INTEGER; db: GSL_MATRIX_STRUCT_API; w: GSL_BSPLINE_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_bspline_deriv_eval (x, nderiv, db.item, w.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_bspline_deriv_eval_nonzero (x: REAL_64; nderiv: INTEGER; db: GSL_MATRIX_STRUCT_API; istart: POINTER; iend: POINTER; w: GSL_BSPLINE_WORKSPACE_STRUCT_API): INTEGER 
 		do
 			Result := c_gsl_bspline_deriv_eval_nonzero (x, nderiv, db.item, istart, iend, w.item)
+		ensure
+			instance_free: class
 		end
 
 feature -- Externals

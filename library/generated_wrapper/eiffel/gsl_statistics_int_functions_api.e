@@ -12,206 +12,288 @@ feature -- Access
 	gsl_stats_int_mean (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_mean (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_variance (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_variance (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_sd (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_sd (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_variance_with_fixed_mean (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_int_variance_with_fixed_mean (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_sd_with_fixed_mean (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_int_sd_with_fixed_mean (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_tss (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_tss (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_tss_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_int_tss_m (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_absdev (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_absdev (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_skew (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_skew (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_kurtosis (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_kurtosis (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_lag1_autocorrelation (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_lag1_autocorrelation (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_covariance (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_covariance (data1.item, stride1, data2.item, stride2, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_correlation (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_correlation (data1.item, stride1, data2.item, stride2, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_spearman (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_stats_int_spearman (data1.item, stride1, data2.item, stride2, n, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_variance_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_int_variance_m (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_sd_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_int_sd_m (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_absdev_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_int_absdev_m (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_skew_m_sd (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64; sd: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_int_skew_m_sd (data.item, stride, n, mean, sd)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_kurtosis_m_sd (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64; sd: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_int_kurtosis_m_sd (data.item, stride, n, mean, sd)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_lag1_autocorrelation_m (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; mean: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_int_lag1_autocorrelation_m (data.item, stride, n, mean)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_covariance_m (data1: MANAGED_POINTER; stride1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n: INTEGER; mean1: REAL_64; mean2: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_int_covariance_m (data1.item, stride1, data2.item, stride2, n, mean1, mean2)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_pvariance (data1: MANAGED_POINTER; stride1: INTEGER; n1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n2: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_pvariance (data1.item, stride1, n1, data2.item, stride2, n2)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_ttest (data1: MANAGED_POINTER; stride1: INTEGER; n1: INTEGER; data2: MANAGED_POINTER; stride2: INTEGER; n2: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_ttest (data1.item, stride1, n1, data2.item, stride2, n2)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_max (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_stats_int_max (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_min (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_stats_int_min (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_minmax (min: POINTER; max: POINTER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER) 
 		do
 			c_gsl_stats_int_minmax (min, max, data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_max_index (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_stats_int_max_index (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_min_index (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): INTEGER 
 		do
 			Result := c_gsl_stats_int_min_index (data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_minmax_index (min_index: POINTER; max_index: POINTER; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER) 
 		do
 			c_gsl_stats_int_minmax_index (min_index, max_index, data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_select (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; k: INTEGER): INTEGER 
 		do
 			Result := c_gsl_stats_int_select (data.item, stride, n, k)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_median_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_median_from_sorted_data (sorted_data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_median (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_median (sorted_data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_quantile_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; f: REAL_64): REAL_64 
 		do
 			Result := c_gsl_stats_int_quantile_from_sorted_data (sorted_data.item, stride, n, f)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_trmean_from_sorted_data (trim: REAL_64; sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_trmean_from_sorted_data (trim, sorted_data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_gastwirth_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER): REAL_64 
 		do
 			Result := c_gsl_stats_int_gastwirth_from_sorted_data (sorted_data.item, stride, n)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_mad0 (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_stats_int_mad0 (data.item, stride, n, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_mad (data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_stats_int_mad (data.item, stride, n, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_sn0_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): INTEGER 
 		do
 			Result := c_gsl_stats_int_sn0_from_sorted_data (sorted_data.item, stride, n, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_sn_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_stats_int_sn_from_sorted_data (sorted_data.item, stride, n, work.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_qn0_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER; work_int: MANAGED_POINTER): INTEGER 
 		do
 			Result := c_gsl_stats_int_qn0_from_sorted_data (sorted_data.item, stride, n, work.item, work_int.item)
+		ensure
+			instance_free: class
 		end
 
 	gsl_stats_int_qn_from_sorted_data (sorted_data: MANAGED_POINTER; stride: INTEGER; n: INTEGER; work: MANAGED_POINTER; work_int: MANAGED_POINTER): REAL_64 
 		do
 			Result := c_gsl_stats_int_qn_from_sorted_data (sorted_data.item, stride, n, work.item, work_int.item)
+		ensure
+			instance_free: class
 		end
 
 feature -- Externals

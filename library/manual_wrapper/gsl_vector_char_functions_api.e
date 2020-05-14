@@ -31,7 +31,8 @@ feature -- Access
 			if attached c_gsl_vector_char_alloc_from_block (b.item, offset, n, stride) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_alloc_from_vector (v: GSL_VECTOR_CHAR_STRUCT_API; offset: INTEGER; n: INTEGER; stride: INTEGER): detachable GSL_VECTOR_CHAR_STRUCT_API
@@ -39,18 +40,20 @@ feature -- Access
 			if attached c_gsl_vector_char_alloc_from_vector (v.item, offset, n, stride) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_free (v: GSL_VECTOR_CHAR_STRUCT_API)
 		do
 			c_gsl_vector_char_free (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_view_array (v: POINTER; n: INTEGER): POINTER
 		external
 			"C inline use <eif_gsl.h>"
-
 		alias
 			"[
 				_gsl_vector_char_view *result = (_gsl_vector_char_view*) malloc (sizeof(_gsl_vector_char_view));
@@ -62,7 +65,6 @@ feature -- Access
 	gsl_vector_char_view_array_with_stride (base: POINTER; stride: INTEGER; n: INTEGER): POINTER
 		external
 			"C inline use <eif_gsl.h>"
-
 		alias
 			"[
 				_gsl_vector_char_view *result = (_gsl_vector_char_view*) malloc (sizeof(_gsl_vector_char_view));
@@ -74,7 +76,6 @@ feature -- Access
 	gsl_vector_char_const_view_array (v: POINTER; n: INTEGER): POINTER
 		external
 			"C inline use <eif_gsl.h>"
-
 		alias
 			"[
 				_gsl_vector_char_const_view *result = (_gsl_vector_char_const_view*) malloc (sizeof(_gsl_vector_char_const_view));
@@ -86,7 +87,6 @@ feature -- Access
 	gsl_vector_char_const_view_array_with_stride (base: POINTER; stride: INTEGER; n: INTEGER): POINTER
 		external
 			"C inline use <eif_gsl.h>"
-
 		alias
 			"[
 				_gsl_vector_char_const_view *result = (_gsl_vector_char_const_view*) malloc (sizeof(_gsl_vector_char_const_view));
@@ -100,7 +100,8 @@ feature -- Access
 			if attached c_gsl_vector_char_subvector (v.item, i, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_subvector_with_stride (v: GSL_VECTOR_CHAR_STRUCT_API; i: INTEGER; stride: INTEGER; n: INTEGER): detachable GSL_VECTOR_CHAR_VIEW_STRUCT_API
@@ -108,7 +109,8 @@ feature -- Access
 			if attached c_gsl_vector_char_subvector_with_stride (v.item, i, stride, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_const_subvector (v: GSL_VECTOR_CHAR_STRUCT_API; i: INTEGER; n: INTEGER): detachable GSL_VECTOR_CHAR_VIEW_STRUCT_API
@@ -116,7 +118,8 @@ feature -- Access
 			if attached c_gsl_vector_char_const_subvector (v.item, i, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_const_subvector_with_stride (v: GSL_VECTOR_CHAR_STRUCT_API; i: INTEGER; stride: INTEGER; n: INTEGER): detachable GSL_VECTOR_CHAR_VIEW_STRUCT_API
@@ -124,37 +127,50 @@ feature -- Access
 			if attached c_gsl_vector_char_const_subvector_with_stride (v.item, i, stride, n) as l_ptr and then not l_ptr.is_default_pointer then
 				create Result.make_by_pointer ( l_ptr )
 			end
-
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_set_zero (v: GSL_VECTOR_CHAR_STRUCT_API)
 		do
 			c_gsl_vector_char_set_zero (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_set_all (v: GSL_VECTOR_CHAR_STRUCT_API; x: CHARACTER)
 		do
 			c_gsl_vector_char_set_all (v.item, x)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_set_basis (v: GSL_VECTOR_CHAR_STRUCT_API; i: INTEGER): INTEGER
 		do
 			Result := c_gsl_vector_char_set_basis (v.item, i)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_fread (stream: FILE; v: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_fread (stream.file_pointer, v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_fwrite (stream: FILE; v: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_fwrite (stream.file_pointer, v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_fscanf (stream: FILE; v: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_fscanf (stream.file_pointer, v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_fprintf (stream: FILE; v: GSL_VECTOR_CHAR_STRUCT_API; format: STRING): INTEGER
@@ -163,36 +179,50 @@ feature -- Access
 		do
 			create format_c_string.make (format)
 			Result := c_gsl_vector_char_fprintf (stream.file_pointer, v.item, format_c_string.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_memcpy (dest: GSL_VECTOR_CHAR_STRUCT_API; src: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_memcpy (dest.item, src.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_reverse (v: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_reverse (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_swap (v: GSL_VECTOR_CHAR_STRUCT_API; w: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_swap (v.item, w.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_swap_elements (v: GSL_VECTOR_CHAR_STRUCT_API; i: INTEGER; j: INTEGER): INTEGER
 		do
 			Result := c_gsl_vector_char_swap_elements (v.item, i, j)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_max (v: GSL_VECTOR_CHAR_STRUCT_API): CHARACTER
 		do
 			Result := c_gsl_vector_char_max (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_min (v: GSL_VECTOR_CHAR_STRUCT_API): CHARACTER
 		do
 			Result := c_gsl_vector_char_min (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_minmax (v: GSL_VECTOR_CHAR_STRUCT_API; min_out: STRING; max_out: STRING)
@@ -203,101 +233,141 @@ feature -- Access
 			create min_out_c_string.make (min_out)
 			create max_out_c_string.make (max_out)
 			c_gsl_vector_char_minmax (v.item, min_out_c_string.item, max_out_c_string.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_max_index (v: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_max_index (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_min_index (v: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_min_index (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_minmax_index (v: GSL_VECTOR_CHAR_STRUCT_API; imin: POINTER; imax: POINTER)
 		do
 			c_gsl_vector_char_minmax_index (v.item, imin, imax)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_add (a: GSL_VECTOR_CHAR_STRUCT_API; b: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_add (a.item, b.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_sub (a: GSL_VECTOR_CHAR_STRUCT_API; b: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_sub (a.item, b.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_mul (a: GSL_VECTOR_CHAR_STRUCT_API; b: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_mul (a.item, b.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_div (a: GSL_VECTOR_CHAR_STRUCT_API; b: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_div (a.item, b.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_scale (a: GSL_VECTOR_CHAR_STRUCT_API; x: CHARACTER): INTEGER
 		do
 			Result := c_gsl_vector_char_scale (a.item, x)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_add_constant (a: GSL_VECTOR_CHAR_STRUCT_API; x: REAL_64): INTEGER
 		do
 			Result := c_gsl_vector_char_add_constant (a.item, x)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_axpby (alpha: CHARACTER; x: GSL_VECTOR_CHAR_STRUCT_API; beta: CHARACTER; y: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_axpby (alpha, x.item, beta, y.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_equal (u: GSL_VECTOR_CHAR_STRUCT_API; v: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_equal (u.item, v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_isnull (v: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_isnull (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_ispos (v: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_ispos (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_isneg (v: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_isneg (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_isnonneg (v: GSL_VECTOR_CHAR_STRUCT_API): INTEGER
 		do
 			Result := c_gsl_vector_char_isnonneg (v.item)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_get (v: GSL_VECTOR_CHAR_STRUCT_API; i: INTEGER): CHARACTER
 		do
 			Result := c_gsl_vector_char_get (v.item, i)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_set (v: GSL_VECTOR_CHAR_STRUCT_API; i: INTEGER; x: CHARACTER)
 		do
 			c_gsl_vector_char_set (v.item, i, x)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_ptr (v: GSL_VECTOR_CHAR_STRUCT_API; i: INTEGER): POINTER
 		do
 			Result := c_gsl_vector_char_ptr (v.item, i)
+		ensure
+			instsance_free: class
 		end
 
 	gsl_vector_char_const_ptr (v: GSL_VECTOR_CHAR_STRUCT_API; i: INTEGER): POINTER
 		do
 			Result := c_gsl_vector_char_const_ptr (v.item, i)
+		ensure
+			instsance_free: class
 		end
 
 feature -- Externals
