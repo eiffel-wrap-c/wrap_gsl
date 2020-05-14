@@ -78,3 +78,17 @@ Work in progress.
 ### Basis Splines Examples 
 
 * [Example 1](./examples/basis_splines_examples/example_1) 		`computes a linear least squares fit to data using cubic B-spline basis functions with uniform breakpoints.`
+
+
+### How to compile the C library glue code.
+
+Before to use the examples you will need to compile the C glue code, go to 
+
+	library/generated_wrapper/c/src 
+
+and run
+
+	finish_freezing --library
+
+It will copy the C lib `eif_gsl.a` to `$ECF_CONFIG_PATH/C/spec/$(ISE_PLATFORM)/lib/` or `eif_gsl.lib` to `$ECF_CONFIG_PATH/C/spec/$ISE_C_COMPILER/$ISE_PLATFORM/lib`
+
