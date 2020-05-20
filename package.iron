@@ -1,0 +1,19 @@
+package wrap_gsl
+
+project
+	wrap_gsl = "library/wrap_gsl.ecf"
+
+note
+	title: Eiffel wrap_gsl
+	description: "[
+		Eiffel binding for GNU GSL C library. 
+		The GNU Scientific Library (GSL) is a collection of routines for numerical computing.
+				]"
+
+	tags: gsl, numerical, wrapc 
+	license: EFL
+	copyright: Copyright (c)  2020 Javier Velilla and others.
+	link[license]: "license" "https://github.com/eiffel-wrap-c/wrap_gsl/blob/master/license.lic"
+	link[github]: "project" https://github.com/eiffel-wrap-c/wrap_gsl
+
+end
