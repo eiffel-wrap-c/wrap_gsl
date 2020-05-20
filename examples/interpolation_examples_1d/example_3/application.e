@@ -28,11 +28,9 @@ feature {NONE} -- Initialization
 	make
 			-- Run application.
 		local
-			xi, yi, yi_cubic, yi_akima, yi_steffen : REAL_64
+			xi, yi_cubic, yi_akima, yi_steffen : REAL_64
 			x, y: ARRAY [REAL_64]
 			i: INTEGER
---			gsl_spline: GSL_SPLINE_FUNCTIONS_API
-			res: INTEGER
 			n: INTEGER
 		do
 			n := 9

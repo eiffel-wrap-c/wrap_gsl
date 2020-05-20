@@ -164,7 +164,7 @@ feature -- Utility
 			i: INTEGER
 		do
 			create gsl_vector
-			create Result.make (1, v.size)
+			create Result.make_filled (0, 1, v.size)
 			from
 				i := 0
 			until
