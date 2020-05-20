@@ -31,7 +31,6 @@ feature {NONE} -- Initialization
 			xi, yi: REAL_64
 			x, y: ARRAY [REAL_64]
 			i: INTEGER
-			res: INTEGER
 			n: INTEGER
 		do
 			n := 4

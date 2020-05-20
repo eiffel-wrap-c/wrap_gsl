@@ -184,7 +184,7 @@ feature -- Access
 			instance_free: class
 		end
 
-	gsl_stats_uchar_minmax (min: STRING; max: STRING; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER) 
+	gsl_stats_uchar_minmax (min: STRING_8; max: STRING_8; data: MANAGED_POINTER; stride: INTEGER; n: INTEGER) 
 		local
 			min_c_string: C_STRING
 			max_c_string: C_STRING

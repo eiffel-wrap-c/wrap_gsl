@@ -32,8 +32,6 @@ feature {NONE} -- Initialization
 			xi, yi: REAL_64
 			x, y: ARRAY [REAL_64]
 			i: INTEGER
---			gsl_spline: GSL_SPLINE_FUNCTIONS_API
-			res: INTEGER
 		do
 			create y.make_filled (0.0, 1, 10)
 			create x.make_filled (0.0, 1, 10)
