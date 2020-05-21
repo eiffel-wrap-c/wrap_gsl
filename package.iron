@@ -12,7 +12,7 @@ note
 
 	tags: gsl, numerical, wrapc 
 	license: EFL
-	copyright: Copyright (c)  2020 Javier Velilla and others.
+	copyright: Copyright (c)  2020 Javier Velilla, Eiffel Software and others.
 	link[license]: "license" "https://github.com/eiffel-wrap-c/wrap_gsl/blob/master/license.lic"
 	link[github]: "project" https://github.com/eiffel-wrap-c/wrap_gsl
 
